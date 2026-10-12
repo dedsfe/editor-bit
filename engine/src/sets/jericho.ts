@@ -166,7 +166,7 @@ export const jericho: SetFactory = (r, params) => {
         { z: -30, draw: () => r.billboard(palmS.tex, -20, -30, palmS.w, palmS.h, { normal: palmS.n }) },
         { z: -34, draw: () => r.billboard(palmS.tex, 214, -34, palmS.w, palmS.h, { normal: palmS.n, flipX: true }) },
         { z: TZ - 0.5, draw: () => r.billboard(treeBack.tex, TX, TZ - 0.5, TREE_W, TREE_H, { normal: treeBack.n }) },
-        { z: TZ + 2, draw: () => r.billboard(treeFront.tex, TX, TZ - 0.5, TREE_W, TREE_H, { normal: treeFront.n, z: TZ + 2 }) },
+        { z: TZ + 2, draw: () => r.billboard(treeFront.tex, TX, TZ - 0.5, TREE_W, TREE_H, { normal: treeFront.n }) },
       ];
     },
 

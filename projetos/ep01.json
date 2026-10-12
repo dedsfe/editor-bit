@@ -265,9 +265,68 @@
       "dur": 4
     },
     { "type": "weather", "at": "11-jesus:end+1.2", "daylight": 1, "dur": 7 },
-    { "type": "hold", "at": 0, "actor": "pedro", "target": "andre", "glow": 1, "until": 2 },
-    { "type": "reach", "at": 0, "actor": "pedro", "until": 2 },
-    { "type": "sink", "at": 0, "actor": "andre", "depth": 20, "dur": 1.2 }
+    { "type": "lightning", "at": "01-andre+0.96", "strength": 1 },
+    { "type": "lightning", "at": "01-andre+3.46", "strength": 1 },
+    { "type": "murmur", "at": "02-pedro+1.48", "until": "02-pedro+3.48" },
+    { "type": "weather", "at": "03-pedro+0.49", "dur": 3, "rain": 0.5 },
+    { "type": "weather", "at": "03-pedro+1.49", "dur": 3, "rain": 0.5 },
+    {
+      "type": "set",
+      "at": "04-andre+1.44",
+      "set": { "kind": "jericho" },
+      "fade": 0.8
+    },
+    {
+      "type": "set",
+      "at": "05-jesus+1.43",
+      "set": { "kind": "jericho" },
+      "fade": 0.8
+    },
+    {
+      "type": "set",
+      "at": "05-jesus+2.3",
+      "set": { "kind": "jericho" },
+      "fade": 0.8
+    },
+    {
+      "type": "set",
+      "at": "05-jesus+3.56",
+      "set": { "kind": "jericho" },
+      "fade": 0.8
+    },
+    { "type": "shake", "at": "05-jesus+4.49", "amp": 3, "dur": 0.6 },
+    { "type": "face", "at": "06-pedro+0.76", "actor": "pedro", "dir": -1 },
+    { "type": "face", "at": "06-pedro+2.33", "actor": "pedro", "dir": 1 },
+    {
+      "type": "gesture",
+      "at": "06-pedro+3.16",
+      "actor": "pedro",
+      "variant": "reach",
+      "until": "06-pedro+5.16"
+    },
+    {
+      "type": "gesture",
+      "at": "07-andre+0.02",
+      "actor": "pedro",
+      "variant": "reach",
+      "until": "07-andre+2.02"
+    },
+    { "type": "place", "at": "07-andre+0.88", "actor": "pedro", "x": 65, "z": 38 },
+    {
+      "type": "hold",
+      "at": "08-jesus+1.39",
+      "actor": "pedro",
+      "target": "andre",
+      "glow": 1,
+      "until": "08-jesus+3.39"
+    },
+    { "type": "bubble", "at": "09-pedro+2.99", "actor": "pedro", "text": "!", "until": "09-pedro+4.99" },
+    { "type": "thought", "at": "10-pedro+0.88", "actor": "pedro", "text": "...", "until": "10-pedro+2.88" },
+    { "type": "reach", "at": "11-jesus+1.5", "actor": "pedro", "until": "11-jesus+3.5" },
+    { "type": "sink", "at": "11-jesus+4.06", "actor": "pedro", "depth": 20, "dur": 1.2 },
+    { "type": "climb", "at": "11-jesus+6.13", "actor": "pedro", "height": 0, "dur": 1.2 },
+    { "type": "jump", "at": "12-andre+2.06", "actor": "pedro", "height": 14, "times": 3, "dur": 1.5 },
+    { "type": "jump", "at": "12-andre+2.9", "actor": "pedro", "height": 14, "times": 3, "dur": 1.5 }
   ],
   "name": "EP01 · Pedro nas águas",
   "weather": { "rain": 1, "wind": 1, "waves": 1, "lightning": 1, "fog": 0.6, "daylight": 0, "swell": 0 }

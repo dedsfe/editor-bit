@@ -24,11 +24,11 @@ for (const step of process.argv.slice(2)) {
   if (cmd === "click") await page.getByRole("button", { name: arg, exact: false }).first().click();
   if (cmd === "key") await page.keyboard.press(arg);
   if (cmd === "export") {
-    await page.getByRole("button", { name: "Exportar MP4" }).click();
-    await page.waitForFunction(() => window.__lastExport || /Export falhou/.test(document.querySelector("footer").textContent), null, { timeout: 900000, polling: 2000 });
-    console.log("export:", await page.evaluate(() => window.__lastExport ?? document.querySelector("footer").textContent));
+    await page.getByRole("button", { name: "Exportar", exact: true }).click();
+    await page.waitForFunction(() => window.__lastExport || /Export falhou/.test(document.querySelector(".transport .status").textContent), null, { timeout: 900000, polling: 2000 });
+    console.log("export:", await page.evaluate(() => window.__lastExport ?? document.querySelector(".transport .status").textContent));
   }
 }
-console.log("status:", await page.textContent("footer"));
+console.log("status:", await page.textContent(".transport .status"));
 console.log(errors.length ? errors : "sem erros");
 await browser.close();

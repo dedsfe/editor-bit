@@ -1,0 +1,2 @@
+Voz de ROBÔ (say do macOS), só pra montar a timeline do EP02 antes do áudio real.
+Quando o áudio do André chegar em audio/ep02/, troque "audio" no projetos/ep02.json (ou no editor).

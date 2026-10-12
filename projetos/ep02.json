@@ -1,0 +1,190 @@
+{
+  "id": "ep02",
+  "name": "EP02 · Zaqueu na figueira",
+  "audio": "audio/ep02-rascunho",
+  "intro": 3,
+  "outro": 9.5,
+  "gap": 0.35,
+  "set": { "kind": "jericho", "treeX": 130, "treeZ": 24 },
+  "camera": { "x": 90, "y": 168, "zoom": 1.05 },
+  "actors": {
+    "zaqueu": { "skin": "zaqueu", "x": 34, "z": 20, "name": "Zaqueu" },
+    "morador": { "skin": "morador", "x": 156, "z": 62, "facing": -1, "name": "Morador" },
+    "jesus": { "skin": "jesus", "x": 270, "z": 32, "facing": -1, "name": "Jesus" },
+    "multidao-1": {
+      "skin": "figurante-1",
+      "x": 18,
+      "z": 40,
+      "name": "Multidão 1",
+      "extra": true,
+      "facing": 1
+    },
+    "multidao-2": {
+      "skin": "figurante-4",
+      "x": 38,
+      "z": 34,
+      "name": "Multidão 2",
+      "extra": true,
+      "facing": -1
+    },
+    "multidao-3": {
+      "skin": "figurante-2",
+      "x": 58,
+      "z": 44,
+      "name": "Multidão 3",
+      "extra": true,
+      "facing": 1
+    },
+    "multidao-4": {
+      "skin": "figurante-5",
+      "x": 80,
+      "z": 36,
+      "name": "Multidão 4",
+      "extra": true,
+      "facing": -1
+    },
+    "multidao-5": {
+      "skin": "figurante-3",
+      "x": 100,
+      "z": 46,
+      "name": "Multidão 5",
+      "extra": true,
+      "facing": 1
+    },
+    "multidao-6": {
+      "skin": "figurante-6",
+      "x": 118,
+      "z": 38,
+      "name": "Multidão 6",
+      "extra": true,
+      "facing": -1
+    }
+  },
+  "lines": [
+    {
+      "id": "01-morador",
+      "text": "Bah, olha o Zaqueu ali, tchê. Chefe dos cobradores de imposto… rico às custas da gente!"
+    },
+    { "id": "02-zaqueu", "text": "Meu, não dá pra ver nada! Todo mundo aqui é mais alto que eu, mano!" },
+    { "id": "03-zaqueu", "text": "Já sei… vou subir naquela figueira." },
+    {
+      "id": "04-morador",
+      "text": "Bah… o homem mais rico de Jericó pendurado numa árvore. Agora eu vi de tudo."
+    },
+    {
+      "id": "05-jesus",
+      "text": "Zaqueu, desce depressa, porque, hoje, me convém pousar em tua casa.",
+      "gap": 0.8
+    },
+    { "id": "06-zaqueu", "text": "Eu?! Na MINHA casa?! Já tô descendo, Senhor!" },
+    {
+      "id": "07-morador",
+      "text": "Bah, mas que barbaridade! Vai ser hóspede de um homem pecador!",
+      "gap": 0.9
+    },
+    {
+      "id": "08-zaqueu",
+      "text": "Senhor… metade dos meus bens eu dou aos pobres. E se roubei alguém… devolvo quatro vezes mais.",
+      "gap": 1.6
+    },
+    { "id": "09-morador", "text": "…Quatro vezes? Então ele me deve um bocado, tchê." },
+    { "id": "10-jesus", "text": "Hoje, veio a salvação a esta casa, pois também este é filho de Abraão." },
+    { "id": "11-jesus", "text": "Porque o Filho do Homem veio buscar e salvar o que se havia perdido." }
+  ],
+  "cues": [
+    {
+      "type": "hook",
+      "at": 0,
+      "until": 2.9,
+      "text": "O homem MAIS ODIADO da cidade subiu numa árvore. E Jesus parou."
+    },
+    { "type": "murmur", "at": 0, "until": "02-zaqueu" },
+    { "type": "camera", "at": 2.4, "actor": "morador", "shot": "medium", "dur": 1 },
+    { "type": "reach", "actor": "morador", "at": "01-morador+0.3", "until": "01-morador:end" },
+    { "type": "camera", "at": "02-zaqueu-0.3", "actor": "zaqueu", "shot": "wide", "dur": 0.6 },
+    { "type": "jump", "actor": "zaqueu", "at": "02-zaqueu+0.1", "height": 20, "times": 1, "dur": 0.6 },
+    { "type": "counter", "label": "TENTATIVAS:", "value": 1, "at": "02-zaqueu+0.25" },
+    { "type": "jump", "actor": "zaqueu", "at": "02-zaqueu+1.1", "height": 20, "times": 1, "dur": 0.6 },
+    { "type": "counter", "label": "TENTATIVAS:", "value": 2, "at": "02-zaqueu+1.25" },
+    { "type": "jump", "actor": "zaqueu", "at": "02-zaqueu+2.1", "height": 22, "times": 1, "dur": 0.6 },
+    {
+      "type": "counter",
+      "label": "TENTATIVAS:",
+      "value": 3,
+      "at": "02-zaqueu+2.25",
+      "until": "03-zaqueu+0.6"
+    },
+    { "type": "thought", "actor": "zaqueu", "text": "!", "at": "03-zaqueu", "until": "03-zaqueu+0.8" },
+    { "type": "walk", "actor": "zaqueu", "at": "03-zaqueu+0.8", "x": 140, "z": 25, "speed": 55 },
+    { "type": "camera", "at": "03-zaqueu+0.8", "x": 120, "y": 160, "zoom": 1.25, "dur": 1.5 },
+    { "type": "climb", "actor": "zaqueu", "at": "03-zaqueu:end+0.1", "height": 72, "x": 144, "dur": 1.3 },
+    { "type": "camera", "at": "04-morador", "actor": "morador", "shot": "medium", "dur": 0.5 },
+    { "type": "walk", "actor": "jesus", "at": "04-morador", "x": 156, "z": 34, "speed": 30 },
+    { "type": "camera", "at": "04-morador:end-0.6", "x": 146, "y": 150, "zoom": 1.5, "dur": 1 },
+    {
+      "type": "gesture",
+      "actor": "jesus",
+      "variant": "lookup",
+      "at": "05-jesus-0.6",
+      "until": "06-zaqueu:end"
+    },
+    {
+      "type": "gesture",
+      "actor": "morador",
+      "variant": "lookup",
+      "at": "05-jesus-0.4",
+      "until": "05-jesus:end"
+    },
+    { "type": "camera", "at": "05-jesus+1.2", "actor": "zaqueu", "shot": "close", "dur": 0 },
+    { "type": "camera", "at": "05-jesus:end-1.2", "actor": "jesus", "shot": "medium", "dur": 0.4 },
+    { "type": "camera", "at": "06-zaqueu-0.2", "actor": "zaqueu", "shot": "medium", "dur": 0 },
+    { "type": "climb", "actor": "zaqueu", "at": "06-zaqueu:end-0.2", "height": 0, "fall": true, "dur": 0.45 },
+    { "type": "shake", "at": "06-zaqueu:end+0.25", "amp": 4, "dur": 0.5 },
+    { "type": "camera", "at": "06-zaqueu:end+0.1", "x": 120, "y": 168, "zoom": 1.35, "dur": 0.5 },
+    { "type": "murmur", "at": "06-zaqueu:end+0.5", "until": "07-morador:end+0.4" },
+    { "type": "camera", "at": "07-morador", "actor": "morador", "shot": "close", "dur": 0.6 },
+    {
+      "type": "set",
+      "at": "07-morador:end+0.8",
+      "set": { "kind": "casa-zaqueu", "tableX": 92, "tableZ": 30, "windowX": 146 },
+      "fade": 1.2
+    },
+    { "type": "place", "actor": "multidao-1", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "multidao-2", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "multidao-3", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "multidao-4", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "multidao-5", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "multidao-6", "at": "07-morador:end+0.8", "hidden": true },
+    { "type": "place", "actor": "zaqueu", "at": "07-morador:end+0.8", "x": 66, "z": 24, "facing": 1 },
+    { "type": "place", "actor": "jesus", "at": "07-morador:end+0.8", "x": 120, "z": 24, "facing": -1 },
+    { "type": "place", "actor": "morador", "at": "07-morador:end+0.8", "x": 146, "z": -16, "facing": -1 },
+    { "type": "climb", "actor": "morador", "at": "07-morador:end+0.8", "height": 22, "dur": 0.01 },
+    { "type": "camera", "at": "07-morador:end+0.8", "x": 94, "y": 180, "zoom": 1.3, "dur": 0 },
+    { "type": "jump", "actor": "zaqueu", "at": "08-zaqueu-0.4", "height": 3, "times": 1, "dur": 0.4 },
+    { "type": "camera", "at": "08-zaqueu+0.6", "actor": "zaqueu", "shot": "medium", "dur": 1.5 },
+    { "type": "reach", "actor": "zaqueu", "at": "08-zaqueu+1.4", "until": "08-zaqueu:end" },
+    { "type": "camera", "at": "09-morador-0.1", "actor": "morador", "shot": "close", "dur": 0 },
+    { "type": "camera", "at": "10-jesus-0.2", "actor": "jesus", "shot": "medium", "dur": 0.6 },
+    { "type": "camera", "at": "11-jesus", "actor": "jesus", "shot": "close", "dur": 3.5 },
+    { "type": "camera", "at": "11-jesus:end+0.3", "x": 94, "y": 176, "zoom": 1.1, "dur": 3 },
+    {
+      "type": "card",
+      "at": "11-jesus:end+0.6",
+      "until": "11-jesus:end+3.6",
+      "text": "Jesus não esperou o Zaqueu mudar pra entrar na casa dele."
+    },
+    {
+      "type": "card",
+      "at": "11-jesus:end+3.6",
+      "until": "11-jesus:end+6.6",
+      "text": "Você teria murmurado junto com o povo? 👇",
+      "color": "#ffd84a"
+    },
+    {
+      "type": "card",
+      "at": "11-jesus:end+6.6",
+      "until": 999,
+      "text": "Ore por alguém que parece longe de Deus hoje no Oração Diária 🙏"
+    }
+  ]
+}

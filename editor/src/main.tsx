@@ -9,7 +9,7 @@ import { Player } from "../../engine/src/player";
 import * as api from "./api";
 import { useHistory } from "./history";
 import { Mixer } from "./audio";
-import { CUE_META, anchorAt, makeCue, shiftRef, round } from "./cues";
+import { CUE_META, anchorAt, makeCue, shiftRef, round, type AddItem } from "./cues";
 import { Preview } from "./Preview";
 import { Timeline, type Selection } from "./Timeline";
 import { Inspector } from "./Inspector";
@@ -26,10 +26,9 @@ function App() {
   const [analyses, setAnalyses] = useState<Record<string, Analysis>>({});
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [selection, setSelection] = useState<Selection>({ kind: "scene" });
+  const [selection, setSelection] = useState<Selection>({ kind: "none" });
   const [zoom, setZoom] = useState(22);
-  const [smooth, setSmooth] = useState(true);
-  const [camActor, setCamActor] = useState("");
+  const [help, setHelp] = useState(false);
   const [status, setStatus] = useState("Abrindo…");
   const [external, setExternal] = useState<Scene | null>(null);
   const [exporting, setExporting] = useState("");
@@ -43,7 +42,7 @@ function App() {
       hist.reset(scene);
       diskMtime.current = mtime;
       setTime(0);
-      setSelection({ kind: "scene" });
+      setSelection({ kind: "none" });
       setStatus(`Aberto: projetos/${projectId}.json`);
       history.replaceState(null, "", `?p=${projectId}`);
     }).catch((e) => setStatus(String(e)));
@@ -128,26 +127,28 @@ function App() {
 
   // ---- adicionar coisas no cursor
   const actorIds = scene ? Object.keys(scene.actors) : [];
-  const mainActor = camActor || (selection.kind === "actor" ? selection.id : actorIds[0]);
-  const addCue = (type: CueType) => {
+  // quem o "+" sugere: o selecionado, senão quem está falando agora, senão o primeiro
+  const speakingNow = build?.lines.find((l) => time >= l.clipStart && time <= l.clipStart + l.clipDur)?.speaker;
+  const mainActor = selection.kind === "actor" ? selection.id : speakingNow ?? actorIds[0];
+  const addCue = (type: CueType, actor = mainActor, variant?: string) => {
     if (!scene || !build || !tl) return;
-    const other = actorIds.find((a) => a !== mainActor) ?? mainActor;
-    const cue = makeCue(type, anchorAt(time, build), { actor: mainActor, other, t: time, tl });
+    const other = actorIds.find((a) => a !== actor && !scene.actors[a].extra) ?? actor;
+    const cue = makeCue(type, anchorAt(time, build), { actor, other, t: time, tl, variant });
     edit((s) => ({ ...s, cues: [...(s.cues ?? []), cue] }));
     setSelection({ kind: "cue", index: (scene.cues ?? []).length });
     setStatus(`${CUE_META[type].label} adicionado em ${time.toFixed(2)} s`);
   };
-  const cameraPreset = (actor: string | null, shot: "close" | "medium" | "wide") => {
+  const cameraPreset = (actor: string | null, shot: "close" | "medium" | "wide", smooth = true) => {
     if (!scene || !build) return;
     const cue = actor ? { type: "camera" as const, at: anchorAt(time, build), actor, shot, dur: smooth ? 0.6 : 0 }
       : { type: "camera" as const, at: anchorAt(time, build), shot: "wide" as const, dur: smooth ? 0.8 : 0 };
     edit((s) => ({ ...s, cues: [...(s.cues ?? []), cue] }));
     setSelection({ kind: "cue", index: (scene.cues ?? []).length });
   };
-  const follow = () => {
+  const follow = (smooth = true) => {
     if (!scene || !build) return;
     edit((s) => ({ ...s, cues: followSpeaker(s, build, { shot: "medium", dur: smooth ? 0.5 : 0 }) }));
-    setSelection({ kind: "scene" });
+    setSelection({ kind: "none" });
     setStatus("Câmera segue quem fala: cues de câmera gerados (marcados como auto)");
   };
   const transcribe = async (ids: string[], useText: boolean) => {
@@ -159,6 +160,13 @@ function App() {
       edit((s) => ({ ...s, lines: s.lines.map((l) => (l.id === id ? { ...l, words: r.words, ...(useText || !l.text ? { text: r.text } : {}) } : l)) }));
     }
     setStatus(`Whisper: ${ids.length} fala(s) transcrita(s)`);
+  };
+  /** O que acontece quando escolhe uma opção no "+" de uma trilha. */
+  const onAdd = (item: AddItem, actor: string, smooth: boolean) => {
+    if (item.kind === "cue") addCue(item.type, actor, item.variant);
+    else if (item.kind === "shot") cameraPreset(item.shot === "wide" ? null : actor, item.shot, smooth);
+    else if (item.kind === "follow") follow(smooth);
+    else if (item.kind === "whisper" && scene) void transcribe(scene.lines.map((l) => l.id), false);
   };
 
   // ---- arrastos
@@ -238,8 +246,10 @@ function App() {
       if (e.key === "ArrowLeft") seek(Math.max(time - (e.shiftKey ? 1 : 1 / 30), 0));
       if ((e.key === "Delete" || e.key === "Backspace") && selection.kind === "cue") {
         edit((s) => ({ ...s, cues: s.cues!.filter((_, i) => i !== selection.index) }));
-        setSelection({ kind: "scene" });
+        setSelection({ kind: "none" });
       }
+      if (e.key === "Escape") { setSelection({ kind: "none" }); setHelp(false); }
+      if (e.key === "?") setHelp((h) => !h);
     };
     addEventListener("keydown", key);
     return () => removeEventListener("keydown", key);
@@ -250,63 +260,61 @@ function App() {
 
   if (!scene || !build || !tl) return <div className="loading">{status}</div>;
 
-  const btn = (type: CueType, label?: string) => <button key={type} onClick={() => addCue(type)}>{label ?? CUE_META[type].label}</button>;
+  const panel = selection.kind !== "none";
 
   return (
     <div className="app">
       <header>
-        <strong className="brand">OQJF · editor</strong>
-        <select value={projectId} onChange={(e) => setProjectId(e.target.value)}>{projects.map((p) => <option key={p}>{p}</option>)}</select>
+        <strong className="brand">OQJF</strong>
+        <select className="project" value={projectId} onChange={(e) => setProjectId(e.target.value)} aria-label="Projeto">
+          {projects.map((p) => <option key={p}>{p}</option>)}
+        </select>
         <span className="name">{scene.name ?? scene.id}</span>
-        <button disabled={!hist.canUndo} onClick={hist.undo} title="Desfazer (Cmd+Z)">↶ Desfazer</button>
-        <button disabled={!hist.canRedo} onClick={hist.redo} title="Refazer (Cmd+Shift+Z)">↷ Refazer</button>
-        <span className="saved" title="Salva sozinho 1 s depois de cada mudança (Cmd+S força)">{saving ? "salvando…" : hist.dirty ? "editando…" : "✓ salvo"}</span>
         <span className="spacer" />
-        <button className="export" disabled={!!exporting} onClick={exportMp4}>{exporting || "Exportar MP4"}</button>
+        <button className="icon" disabled={!hist.canUndo} onClick={hist.undo} title="Desfazer (Cmd+Z)" aria-label="Desfazer">↶</button>
+        <button className="icon" disabled={!hist.canRedo} onClick={hist.redo} title="Refazer (Cmd+Shift+Z)" aria-label="Refazer">↷</button>
+        <span className="saved" title="Salva sozinho 1 s depois de cada mudança">{saving ? "salvando…" : hist.dirty ? "editando…" : "salvo"}</span>
+        <button className={`ghost ${selection.kind === "scene" ? "on" : ""}`} onClick={() => setSelection(selection.kind === "scene" ? { kind: "none" } : { kind: "scene" })} title="Ajustes da cena">Cena</button>
+        <button className="icon" onClick={() => setHelp((h) => !h)} title="Atalhos (?)" aria-label="Atalhos">?</button>
+        <button className="export" disabled={!!exporting} onClick={exportMp4}>{exporting || "Exportar"}</button>
       </header>
 
       {external && (
-        <div className="banner">O arquivo mudou fora do editor (ex.: a IA editou).
-          <button onClick={() => { hist.set(external); hist.markSaved(); setExternal(null); }}>Carregar a versão do disco</button>
-          <button onClick={() => setExternal(null)}>Manter a minha</button></div>
+        <div className="banner">O arquivo mudou fora do editor.
+          <button onClick={() => { hist.set(external); hist.markSaved(); setExternal(null); }}>Carregar do disco</button>
+          <button onClick={() => setExternal(null)}>Manter o meu</button></div>
       )}
 
-      <div className="tools">
-        <div className="group"><span>Câmera</span>
-          <select value={mainActor} onChange={(e) => setCamActor(e.target.value)}>{actorIds.map((a) => <option key={a} value={a}>{scene.actors[a].name ?? a}</option>)}</select>
-          <button onClick={() => cameraPreset(mainActor, "close")}>Close no rosto</button>
-          <button onClick={() => cameraPreset(mainActor, "medium")}>Plano médio</button>
-          <button onClick={() => cameraPreset(null, "wide")}>Plano geral</button>
-          <label className="check"><input type="checkbox" checked={smooth} onChange={(e) => setSmooth(e.target.checked)} /> suave</label>
-          <button onClick={follow} title="Gera um enquadramento por fala, alternando entre quem fala">🎥 Câmera segue quem fala</button>
-          {btn("shake", "Tremor")}
+      {help && (
+        <div className="help" onClick={() => setHelp(false)}>
+          <div><kbd>Espaço</kbd> play / pause</div>
+          <div><kbd>←</kbd> <kbd>→</kbd> 1 frame · <kbd>Shift</kbd> 1 s</div>
+          <div><kbd>⌘Z</kbd> desfazer · <kbd>⌘⇧Z</kbd> refazer</div>
+          <div><kbd>Delete</kbd> apaga o selecionado · <kbd>Esc</kbd> fecha</div>
+          <div><b>+</b> na trilha = adicionar no cursor</div>
         </div>
-        <div className="group"><span>Clima</span>{btn("weather", "Keyframe de clima")}{btn("lightning", "⚡ Relâmpago")}</div>
-        <div className="group"><span>Ações</span>{btn("walk")}{btn("sink")}{btn("reach")}{btn("hold")}{btn("face")}</div>
-        <div className="group"><span>Tela</span>{btn("hook", "Gancho")}{btn("bubble", "Balão")}{btn("thought", "Pensamento")}{btn("counter")}{btn("card", "Card")}</div>
-        <div className="group"><span>Legenda</span>
-          <button onClick={() => transcribe(scene.lines.map((l) => l.id), false)}>Whisper: tempo de todas</button>
-        </div>
-      </div>
+      )}
 
-      <main>
+      <main className={panel ? "with-panel" : ""}>
         <Preview scene={scene} build={build} time={time}
           selectedActor={selection.kind === "actor" ? selection.id : undefined}
           onSelectActor={(id) => setSelection({ kind: "actor", id })} onMoveActor={moveActor} />
-        <Inspector scene={scene} build={build} tl={tl} time={time} selection={selection} edit={edit}
-          onSelect={setSelection} onTranscribe={transcribe} cameraPreset={cameraPreset} />
+        {panel && (
+          <Inspector scene={scene} build={build} tl={tl} time={time} selection={selection} edit={edit}
+            onSelect={setSelection} onTranscribe={transcribe} cameraPreset={cameraPreset} onClose={() => setSelection({ kind: "none" })} />
+        )}
       </main>
 
       <div className="transport">
-        <button className="play" onClick={play}>{playing ? "❚❚" : "▶"}</button>
-        <span className="clock">{clock(time)} / {clock(build.duration)}</span>
-        <button onClick={() => setSelection({ kind: "scene" })}>Cena</button>
+        <button className="play" onClick={play} aria-label={playing ? "Pausar" : "Tocar"}>{playing ? "❚❚" : "▶"}</button>
+        <span className="clock">{clock(time)} <span className="muted">/ {clock(build.duration)}</span></span>
+        <span className="status">{status}</span>
         <span className="spacer" />
-        <label>zoom <input type="range" min={8} max={80} value={zoom} onChange={(e) => setZoom(+e.target.value)} /></label>
+        <button className="icon" onClick={() => setZoom((z) => Math.max(8, z / 1.4))} aria-label="Diminuir zoom">−</button>
+        <button className="icon" onClick={() => setZoom((z) => Math.min(90, z * 1.4))} aria-label="Aumentar zoom">+</button>
       </div>
-      <Timeline scene={scene} build={build} tl={tl} time={time} zoom={zoom} selection={selection}
-        onSeek={seek} onSelect={setSelection} onMoveLine={moveLine} onMoveCue={moveCue} />
-      <footer>{status} · Espaço play · ←/→ frame · Cmd+Z/Cmd+Shift+Z · Cmd+S · Delete apaga cue</footer>
+      <Timeline scene={scene} build={build} tl={tl} time={time} zoom={zoom} selection={selection} defaultActor={mainActor}
+        onSeek={seek} onSelect={setSelection} onMoveLine={moveLine} onMoveCue={moveCue} onAdd={onAdd} />
     </div>
   );
 }

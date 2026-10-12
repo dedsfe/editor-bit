@@ -5,12 +5,14 @@ import type { Skin } from "../skins/types";
 import { parseRef } from "./time.ts";
 import { Timeline, SPANS } from "./timeline";
 import { speakerOf } from "./layout.ts";
+import { BUILTIN_GESTURES } from "../skins/animate";
 
 export interface Report { errors: string[]; warnings: string[] }
 
 const REQUIRED: Partial<Record<Cue["type"], string[]>> = {
   walk: ["actor", "x"], face: ["actor", "dir"], sink: ["actor", "depth"], reach: ["actor"], gesture: ["actor", "variant"],
   hold: ["actor", "target"], hook: ["text"], bubble: ["actor", "text"], thought: ["actor", "text"], counter: ["label", "value"], card: ["text"],
+  jump: ["actor"], climb: ["actor", "height"], place: ["actor"], set: ["set"],
 };
 const ACTOR_KEYS = ["actor", "target"];
 const UNIT = ["rain", "wind", "fog", "lightning", "daylight", "waves", "swell"];
@@ -52,10 +54,11 @@ export function validate(scene: Scene, ctx: { sets: string[]; skins: Record<stri
     for (const k of ACTOR_KEYS) if (typeof rec[k] === "string" && !scene.actors[rec[k] as string]) errors.push(`${where}: personagem "${rec[k]}" não existe`);
     if (c.type === "camera" && c.actor && !scene.actors[c.actor]) errors.push(`${where}: personagem "${c.actor}" não existe`);
     if (c.type === "camera" && c.zoom !== undefined && (c.zoom < 0.5 || c.zoom > 5)) warnings.push(`${where}: zoom ${c.zoom} fora do normal (0.8–4)`);
+    if (c.type === "set" && !ctx.sets.includes(c.set?.kind)) errors.push(`${where}: cenário "${c.set?.kind}" não existe`);
     if (c.type === "hold" && c.actor === c.target) errors.push(`${where}: segurando a si mesmo`);
     if (c.type === "gesture") {
       const skin = ctx.skins[scene.actors[c.actor]?.skin ?? ""];
-      if (skin && !skin.variants?.[c.variant]) errors.push(`${where}: a skin ${skin.id} não tem o gesto "${c.variant}"`);
+      if (skin && !skin.variants?.[c.variant] && !BUILTIN_GESTURES.includes(c.variant)) errors.push(`${where}: a skin ${skin.id} não tem o gesto "${c.variant}"`);
     }
     if (c.type === "weather") for (const k of UNIT) {
       const v = rec[k] as number | undefined;

@@ -4,7 +4,8 @@ import type { Build, Cue, LineDef, Scene, TimeRef, Weather } from "../../engine/
 import type { Timeline as TL } from "../../engine/src/scene/timeline";
 import { SKINS } from "../../engine/src/skins";
 import { SETS } from "../../engine/src/sets";
-import { CUE_META, round, type Field } from "./cues";
+import { CUE_META, round, trackOf, type Field } from "./cues";
+import { validate } from "../../engine/src/scene/validate.ts";
 import { parseRef, sameStyle, type RefParts } from "../../engine/src/scene/time.ts";
 import type { Selection } from "./Timeline";
 
@@ -20,6 +21,7 @@ interface Props {
   onSelect: (s: Selection) => void;
   onTranscribe: (lineIds: string[], useText: boolean) => Promise<void>;
   cameraPreset: (actor: string | null, shot: "close" | "medium" | "wide") => void;
+  onClose: () => void;
 }
 
 const Num = ({ label, value, min, max, step, onChange, hint }: { label: string; value: number; min: number; max: number; step: number; onChange: (n: number) => void; hint?: string }) => (
@@ -110,13 +112,18 @@ function CueFields({ cue, index, scene, tl, edit }: { cue: Cue; index: number; s
       case "color":
         return <div key={f.key} className="opt">{toggle}<label className="field"><span>{f.label}</span>
           <input type="color" disabled={v === undefined} value={(v as string) ?? "#ffffff"} onChange={(e) => set(f.key, e.target.value)} /></label></div>;
+      case "set":
+        return <label key={f.key} className="field"><span>{f.label}</span>
+          <select value={(rec.set as { kind: string })?.kind ?? ""} onChange={(e) => set("set", { kind: e.target.value })}>
+            {Object.keys(SETS).map((k) => <option key={k}>{k}</option>)}
+          </select></label>;
       case "until":
         return <TimeField key={f.key} label="Até" value={rec.until as TimeRef | undefined} scene={scene} tl={tl} onChange={(t) => set("until", t)} />;
     }
   };
   return (
     <>
-      <h3><span className="tag" style={{ background: meta.color }} />{meta.label}</h3>
+      <h3><span className="tag" style={{ background: trackOf(cue.type).color }} />{meta.icon} {meta.label}</h3>
       <TimeField label="Começa" value={cue.at} scene={scene} tl={tl} onChange={(t) => set("at", t ?? 0)} />
       {meta.fields.map(field)}
       {cue.auto && <p className="muted">Gerado por “{cue.auto === "follow" ? "câmera segue quem fala" : cue.auto}”. Editar aqui transforma em manual.</p>}
@@ -136,21 +143,42 @@ function defaultFor(f: Field): unknown {
 
 const WEATHER: [keyof Weather, string][] = [["rain", "Chuva"], ["wind", "Vento"], ["fog", "Neblina"], ["lightning", "Relâmpagos automáticos"], ["daylight", "Hora (0 noite → 1 amanhecer)"], ["waves", "Ondas"], ["swell", "Onda gigante"]];
 
-export function Inspector({ scene, build, tl, time, selection, edit, onSelect, onTranscribe, cameraPreset }: Props) {
+/** Os mesmos avisos do `npm run check`, ao vivo. */
+function Checks({ scene, build }: { scene: Scene; build: Build }) {
+  const r = validate(scene, { sets: Object.keys(SETS), skins: SKINS, build });
+  if (!r.errors.length && !r.warnings.length) return <p className="ok">✓ check sem problemas</p>;
+  return (
+    <div className="checks">
+      {r.errors.map((e) => <p key={e} className="err">✗ {e}</p>)}
+      {r.warnings.map((w) => <p key={w} className="warn">! {w}</p>)}
+    </div>
+  );
+}
+
+export function Inspector(props: Props) {
+  return (
+    <aside className="inspector">
+      <button className="close" onClick={props.onClose} aria-label="Fechar painel" title="Fechar (Esc)">×</button>
+      <Body {...props} />
+    </aside>
+  );
+}
+
+function Body({ scene, build, tl, time, selection, edit, onTranscribe, cameraPreset }: Props) {
   const [busy, setBusy] = useState("");
 
   if (selection.kind === "cue") {
     const cue = scene.cues?.[selection.index];
-    if (!cue) return <aside className="inspector"><p className="muted">Nada selecionado.</p></aside>;
-    return <aside className="inspector"><CueFields cue={cue} index={selection.index} scene={scene} tl={tl} edit={edit} /></aside>;
+    if (!cue) return <><p className="muted">Nada selecionado.</p></>;
+    return <><CueFields cue={cue} index={selection.index} scene={scene} tl={tl} edit={edit} /></>;
   }
 
   if (selection.kind === "actor") {
     const id = selection.id, a = scene.actors[id];
-    if (!a) return <aside className="inspector" />;
+    if (!a) return <></>;
     const set = (patch: Partial<typeof a>, key?: string) => edit((s) => ({ ...s, actors: { ...s.actors, [id]: { ...s.actors[id], ...patch } } }), key);
     return (
-      <aside className="inspector">
+      <>
         <h3>{a.name ?? id}</h3>
         <label className="field"><span>Nome</span><input value={a.name ?? ""} onChange={(e) => set({ name: e.target.value }, `actor-name-${id}`)} /></label>
         <label className="field"><span>Skin</span>
@@ -159,6 +187,7 @@ export function Inspector({ scene, build, tl, time, selection, edit, onSelect, o
         <Num label="Profundidade inicial" value={a.z} min={-40} max={120} step={1} onChange={(n) => set({ z: n }, `actor-z-${id}`)} />
         <label className="field"><span>Olhando para</span>
           <select value={a.facing ?? 1} onChange={(e) => set({ facing: +e.target.value as 1 | -1 })}><option value={1}>Direita</option><option value={-1}>Esquerda</option></select></label>
+        <label className="check"><input type="checkbox" checked={!!a.extra} onChange={(e) => set({ extra: e.target.checked || undefined })} /> figurante (sem voz, cochicha com a multidão)</label>
         <h4>Câmera neste personagem (no cursor)</h4>
         <div className="row-btns">
           <button onClick={() => cameraPreset(id, "close")}>Close no rosto</button>
@@ -166,19 +195,19 @@ export function Inspector({ scene, build, tl, time, selection, edit, onSelect, o
           <button onClick={() => cameraPreset(id, "wide")}>Plano geral</button>
         </div>
         <p className="muted">Arraste o personagem no preview pra mudar a posição inicial.</p>
-      </aside>
+      </>
     );
   }
 
   if (selection.kind === "line" || selection.kind === "caption") {
     const def = scene.lines.find((l) => l.id === selection.id);
     const b = build.lines.find((l) => l.id === selection.id);
-    if (!def || !b) return <aside className="inspector" />;
+    if (!def || !b) return <></>;
     const set = (patch: Partial<LineDef>, key?: string) => edit((s) => ({ ...s, lines: s.lines.map((l) => (l.id === def.id ? { ...l, ...patch } : l)) }), key);
     const whisper = def.words?.map((w) => w.w).join(" ");
     const run = async (useText: boolean) => { setBusy("Transcrevendo…"); try { await onTranscribe([def.id], useText); } finally { setBusy(""); } };
     return (
-      <aside className="inspector">
+      <>
         <h3>Fala {def.id}</h3>
         <label className="field"><span>Legenda (o que foi falado)</span>
           <textarea value={def.text} onChange={(e) => set({ text: e.target.value }, `text-${def.id}`)} /></label>
@@ -196,7 +225,7 @@ export function Inspector({ scene, build, tl, time, selection, edit, onSelect, o
         <Num label="Volume" value={def.volume ?? 1} min={0} max={2} step={0.05} onChange={(n) => set({ volume: n }, `vol-${def.id}`)} />
         {def.start !== undefined && <button onClick={() => set({ start: undefined })}>Voltar a emendar automático</button>}
         <p className="muted">Voz em {b.voiceStart.toFixed(2)}–{b.voiceEnd.toFixed(2)} s · cursor em {time.toFixed(2)} s</p>
-      </aside>
+      </>
     );
   }
 
@@ -205,28 +234,35 @@ export function Inspector({ scene, build, tl, time, selection, edit, onSelect, o
   const params = Object.entries(scene.set).filter(([k, v]) => k !== "kind" && typeof v === "number") as [string, number][];
   const w = scene.weather ?? {};
   return (
-    <aside className="inspector">
+    <>
       <h3>Cena</h3>
+      <Checks scene={scene} build={build} />
+      <details open><summary>Cenário</summary>
       <label className="field"><span>Nome</span><input value={scene.name ?? ""} onChange={(e) => edit((s) => ({ ...s, name: e.target.value }), "scene-name")} /></label>
       <label className="field"><span>Cenário</span>
         <select value={scene.set.kind} onChange={(e) => edit((s) => ({ ...s, set: { kind: e.target.value } }))}>{setKind.map((k) => <option key={k}>{k}</option>)}</select></label>
       {params.map(([k, v]) => <Num key={k} label={k} value={v} min={-80} max={260} step={1} onChange={(n) => edit((s) => ({ ...s, set: { ...s.set, [k]: n } }), `set-${k}`)} />)}
-      <h4>Clima no começo</h4>
+      </details>
+      <details><summary>Clima no começo</summary>
       {WEATHER.map(([k, label]) => <Num key={k} label={label} value={w[k] ?? 0} min={0} max={1} step={0.05} onChange={(n) => edit((s) => ({ ...s, weather: { ...s.weather, [k]: n } }), `w-${k}`)} />)}
-      <h4>Tempo</h4>
+      </details>
+      <details><summary>Tempo</summary>
       <Num label="Antes da 1ª fala (s)" value={scene.intro ?? 1} min={0} max={10} step={0.1} onChange={(n) => edit((s) => ({ ...s, intro: n }), "intro")} />
       <Num label="Depois da última (s)" value={scene.outro ?? 1.5} min={0} max={20} step={0.1} onChange={(n) => edit((s) => ({ ...s, outro: n }), "outro")} />
       <Num label="Pausa entre falas (s)" value={scene.gap ?? 0.3} min={0} max={3} step={0.05} onChange={(n) => edit((s) => ({ ...s, gap: n }), "gap")} />
-      <h4>Câmera inicial</h4>
+      </details>
+      <details><summary>Câmera inicial</summary>
       {(["x", "y", "zoom"] as const).map((k) => {
         const cam = scene.camera ?? { x: 90, y: 160, zoom: 1 };
         return <Num key={k} label={k} value={cam[k]} min={k === "zoom" ? 0.8 : -60} max={k === "zoom" ? 4 : 320} step={k === "zoom" ? 0.05 : 1}
           onChange={(n) => edit((s) => ({ ...s, camera: { ...cam, [k]: n } }), `cam-${k}`)} />;
       })}
-      <h4>Visual</h4>
+      </details>
+      <details><summary>Visual</summary>
       <Num label="Legenda: altura (px)" value={scene.look?.captionY ?? 236} min={150} max={290} step={1} onChange={(n) => edit((s) => ({ ...s, look: { ...s.look, captionY: n } }), "capY")} />
       <Num label="8-bit: níveis de cor (0 = desligado)" value={scene.look?.levels ?? 0} min={0} max={16} step={1} onChange={(n) => edit((s) => ({ ...s, look: { ...s.look, levels: n } }), "levels")} />
       <p className="muted">{scene.lines.length} falas · {(scene.cues ?? []).length} cues · {build.duration.toFixed(1)} s</p>
-    </aside>
+      </details>
+    </>
   );
 }

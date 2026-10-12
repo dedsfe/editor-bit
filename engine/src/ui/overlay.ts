@@ -61,8 +61,12 @@ export class Overlay {
     return lines.length * lh;
   }
 
-  /** Legenda estilo TikTok: branca com contorno, centralizada. */
+  /** Legenda estilo TikTok: texto com contorno sobre uma faixa escura (legível em céu, areia ou mar). */
   caption(s: string, y: number, color?: string) {
+    const lines = wrap(s, this.w - 16);
+    const tw = Math.max(...lines.map((l) => textWidth(l)));
+    const h = lines.length * LINE_H;
+    this.rect(Math.round((this.w - tw) / 2) - 5, y + 1, tw + 10, h + 2, [10, 10, 16, 150]);
     this.block(s, this.w / 2, y, this.w - 16, { color: color ? hex(color) : PAPER });
   }
 
