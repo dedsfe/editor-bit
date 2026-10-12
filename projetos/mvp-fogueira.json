@@ -1,0 +1,19 @@
+{
+  "id": "mvp-fogueira",
+  "audio": "audio/mvp",
+  "set": { "kind": "campfire", "fireX": 116, "fireZ": 50 },
+  "intro": 3.5,
+  "outro": 3.5,
+  "actors": {
+    "jesus": { "skin": "jesus", "x": 70, "z": 40 }
+  },
+  "lines": [
+    { "id": "01-jesus", "text": "Tende bom ânimo, sou eu; não temais." }
+  ],
+  "cues": [
+    { "type": "hook", "at": 0, "until": 3.2, "text": "Uma noite na Galileia..." },
+    { "type": "camera", "at": 0, "x": 90, "y": 160, "zoom": 1 },
+    { "type": "camera", "at": 2.5, "x": 88, "y": 186, "zoom": 1.5, "dur": 4 },
+    { "type": "camera", "at": "01-jesus:end", "x": 90, "y": 168, "zoom": 1.15, "dur": 3 }
+  ]
+}

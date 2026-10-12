@@ -1,0 +1,14 @@
+{
+  "id": "teste-skins",
+  "audio": "audio/mvp",
+  "set": { "kind": "campfire", "fireX": 92, "fireZ": 74 },
+  "intro": 0,
+  "outro": 3,
+  "actors": {
+    "pedro": { "skin": "pedro", "x": 50, "z": 46 },
+    "jesus": { "skin": "jesus", "x": 92, "z": 40 },
+    "andre": { "skin": "andre", "x": 134, "z": 46, "facing": -1 }
+  },
+  "lines": [],
+  "camera": { "x": 92, "y": 205, "zoom": 1.7 }
+}

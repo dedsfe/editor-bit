@@ -1,0 +1,13 @@
+Validação Playwright nesta sessão: bloqueada antes de abrir qualquer página.
+
+Google Chrome em /Applications: browserType.launch: Target page, context or browser has been closed; saída SIGABRT; tentativa de encerramento com EPERM.
+
+Chromium Headless Shell v1248, baixado em editor/.browsers:
+FATAL:base/apple/mach_port_rendezvous_mac.cc:159
+Check failed: kr == KERN_SUCCESS.
+bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.28003: Permission denied (1100)
+Saída SIGTRAP. O sandbox desta sessão impede a inicialização.
+
+Não houve screenshots. editor/.browsers está ignorado pelo git.
+Execução local: cd editor && npm run test:ui
+Com exportação completa: EXPORT_FULL=1 npm run test:ui

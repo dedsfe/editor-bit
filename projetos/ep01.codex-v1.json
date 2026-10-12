@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "name": "EP01 · Pedro nas águas",
+  "duration": 63.48,
+  "set": "galilee",
+  "actors": [
+    {
+      "id": "jesus",
+      "name": "Jesus",
+      "skin": "jesus",
+      "x": 125,
+      "z": 30
+    },
+    {
+      "id": "pedro",
+      "name": "Pedro",
+      "skin": "pedro",
+      "x": 72,
+      "z": 75
+    },
+    {
+      "id": "andre",
+      "name": "André",
+      "skin": "andre",
+      "x": 42,
+      "z": 80
+    }
+  ],
+  "clips": [
+    {
+      "id": "01-andre",
+      "source": "01-andre",
+      "actor": "andre",
+      "start": 2,
+      "trimIn": 0,
+      "trimOut": 5.2,
+      "sourceDuration": 5.2,
+      "volume": 1,
+      "text": "Uai, sô… a noite inteira remando e esse barco num sai do lugar."
+    },
+    {
+      "id": "02-pedro",
+      "source": "02-pedro",
+      "actor": "pedro",
+      "start": 7.5,
+      "trimIn": 0,
+      "trimOut": 5.7,
+      "sourceDuration": 5.7,
+      "volume": 1,
+      "text": "Mermão, esse vento tá de brincadeira com a gente!"
+    },
+    {
+      "id": "03-pedro",
+      "source": "03-pedro",
+      "actor": "pedro",
+      "start": 13.5,
+      "trimIn": 0,
+      "trimOut": 3.91,
+      "sourceDuration": 3.91,
+      "volume": 1,
+      "text": "CARACA! É FANTASMA! É FANTASMA!"
+    },
+    {
+      "id": "04-andre",
+      "source": "04-andre",
+      "actor": "andre",
+      "start": 17.71,
+      "trimIn": 0,
+      "trimOut": 3.45,
+      "sourceDuration": 3.45,
+      "volume": 1,
+      "text": "Uai… fantasma de sandália, Pedro?"
+    },
+    {
+      "id": "05-jesus",
+      "source": "05-jesus",
+      "actor": "jesus",
+      "start": 21.46,
+      "trimIn": 0,
+      "trimOut": 6.8,
+      "sourceDuration": 6.8,
+      "volume": 1,
+      "text": "Tende bom ânimo, sou eu; não temais."
+    },
+    {
+      "id": "06-pedro",
+      "source": "06-pedro",
+      "actor": "pedro",
+      "start": 28.56,
+      "trimIn": 0,
+      "trimOut": 5.8,
+      "sourceDuration": 5.8,
+      "volume": 1,
+      "text": "Senhor, se é tu mesmo… manda eu ir aí andando por cima da água!"
+    },
+    {
+      "id": "07-andre",
+      "source": "07-andre",
+      "actor": "andre",
+      "start": 34.66,
+      "trimIn": 0,
+      "trimOut": 2.63,
+      "sourceDuration": 2.63,
+      "volume": 1,
+      "text": "Lá vem ele…"
+    },
+    {
+      "id": "08-jesus",
+      "source": "08-jesus",
+      "actor": "jesus",
+      "start": 37.59,
+      "trimIn": 0,
+      "trimOut": 2.29,
+      "sourceDuration": 2.29,
+      "volume": 1,
+      "text": "Vem."
+    },
+    {
+      "id": "09-pedro",
+      "source": "09-pedro",
+      "actor": "pedro",
+      "start": 40.18,
+      "trimIn": 0,
+      "trimOut": 5.3,
+      "sourceDuration": 5.3,
+      "volume": 1,
+      "text": "Ô André! Olha isso, mermão! Tô andando! Tô ANDANDO!"
+    },
+    {
+      "id": "10-pedro",
+      "source": "10-pedro",
+      "actor": "pedro",
+      "start": 45.78,
+      "trimIn": 0,
+      "trimOut": 4.7,
+      "sourceDuration": 4.7,
+      "volume": 1,
+      "text": "Ih… olha o tamanho dessa onda… SENHOR, SALVA-ME!"
+    },
+    {
+      "id": "11-jesus",
+      "source": "11-jesus",
+      "actor": "jesus",
+      "start": 50.78,
+      "trimIn": 0,
+      "trimOut": 5.3,
+      "sourceDuration": 5.3,
+      "volume": 1,
+      "text": "Homem de pequena fé, por que duvidaste?"
+    },
+    {
+      "id": "12-andre",
+      "source": "12-andre",
+      "actor": "andre",
+      "start": 56.38,
+      "trimIn": 0,
+      "trimOut": 4.8,
+      "sourceDuration": 4.8,
+      "volume": 1,
+      "text": "Uai… verdadeiramente tu és o Filho de Deus."
+    }
+  ],
+  "objects": [
+    {
+      "id": "boat-1",
+      "kind": "boat",
+      "x": 54,
+      "z": 98,
+      "scale": 2.5,
+      "layer": 1
+    }
+  ],
+  "light": {
+    "direction": -0.6,
+    "height": 1,
+    "color": "#d9e7ee",
+    "intensity": 1.2
+  },
+  "points": [],
+  "cues": [
+    {
+      "type": "walk",
+      "actor": "pedro",
+      "at": {
+        "line": "08-jesus",
+        "at": "end",
+        "offset": 0.3
+      },
+      "x": 103,
+      "z": 40,
+      "speed": 12
+    }
+  ]
+}

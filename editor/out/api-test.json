@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "12 áudios e durações",
+    "JSON inválido",
+    "corte preserva referência de ação",
+    "salvar e abrir no disco",
+    "áudio servido",
+    "fixture MP4 H.264 + AAC, 1080x1920"
+  ],
+  "fixture": "0.200000"
+}

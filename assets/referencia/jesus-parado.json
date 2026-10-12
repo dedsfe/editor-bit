@@ -1,0 +1,75 @@
+{
+ "name": "jesus-parado",
+ "palette": {
+  "H": [
+   107,
+   68,
+   35
+  ],
+  "S": [
+   242,
+   201,
+   160
+  ],
+  "E": [
+   40,
+   24,
+   14
+  ],
+  "M": [
+   34,
+   10,
+   14
+  ],
+  "W": [
+   250,
+   248,
+   240
+  ],
+  "R": [
+   215,
+   38,
+   61
+  ],
+  "L": [
+   90,
+   58,
+   30
+  ],
+  "T": [
+   122,
+   78,
+   42
+  ],
+  "D": [
+   74,
+   46,
+   23
+  ]
+ },
+ "grid": [
+  "......HHHHHH........",
+  ".....HHHHHHHH.......",
+  "....HHHSSSSSHH......",
+  "....HHSSSSSSSH......",
+  "....HSSESSSESH......",
+  "....HSSSSSSSSHH.....",
+  ".TT.HHHHSSHHHHH.....",
+  "T..THHHHHHHHHHH.....",
+  "T..T..HHHHHHH.......",
+  "...T...WSSWW........",
+  "...T.WWRRWWWWWW.....",
+  "...TWWWRRRWWWWWW....",
+  "...SWWWWRRRWWWWW....",
+  "...TWWWWWRRRWWWWS...",
+  "...T.WLLLLLLLLLW....",
+  "...T.WWWWWWRRRWW....",
+  "...T.WWWWWWWRRRW....",
+  "...T.WWWWWWWRRRR....",
+  "...T.WWWWWWWWRRR....",
+  "...T.WWWWWWWWRRR....",
+  "...T.WWWWWWWWWRR....",
+  "...T..SS....SS......",
+  "...T.DDD...DDD......"
+ ]
+}
