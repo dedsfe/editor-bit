@@ -247,12 +247,16 @@ export function extent(c: Cue, tl: Timeline): { t: number; t1: number } {
 }
 
 /** Resumo curtinho que aparece no bloco da timeline. */
+const WEATHER_PT: Record<string, string> = {
+  rain: "Chuva", wind: "Vento", fog: "Neblina", lightning: "Relâmpago", daylight: "Dia", waves: "Ondas", swell: "Mar",
+};
+
 export function summary(c: Cue, scene: Scene): string {
   const who = (id?: string) => (id ? scene.actors[id]?.name ?? id : "");
   switch (c.type) {
-    case "camera": return c.shot ? `${{ close: "Close", medium: "Médio", wide: "Geral" }[c.shot]} ${who(c.actor)}`.trim() : `zoom ${c.zoom ?? "–"}`;
-    case "shake": return `tremor ${c.amp ?? 3}`;
-    case "weather": return Object.entries(c).filter(([k]) => ["rain", "wind", "fog", "lightning", "daylight", "waves", "swell"].includes(k)).map(([k, v]) => `${k} ${v}`).join(" · ");
+    case "camera": return c.shot ? `${{ close: "Close", medium: "Médio", wide: "Geral" }[c.shot]} ${who(c.actor)}`.trim() : `Zoom ${c.zoom ?? "–"}×`;
+    case "shake": return `Tremor ${c.amp ?? 3}`;
+    case "weather": return Object.entries(c).filter(([k]) => k in WEATHER_PT).map(([k, v]) => `${WEATHER_PT[k]} ${Math.round(Number(v) * 100)}%`).join(" · ");
     case "lightning": return "⚡";
     case "walk": return `${who(c.actor)} → ${c.x}${c.hop ? " (pulo)" : ""}`;
     case "face": return `${who(c.actor)} ${c.dir > 0 ? "→" : "←"}`;
