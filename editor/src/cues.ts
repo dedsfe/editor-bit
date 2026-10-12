@@ -175,7 +175,7 @@ export type AddItem =
 
 export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }[] = [
   {
-    id: "camera", label: "Câmera", color: "#7aa7ff", add: [
+    id: "camera", label: "Câmera", color: "#4f8cff", add: [
       { kind: "shot", shot: "close", label: "Close no rosto", actor: true },
       { kind: "shot", shot: "medium", label: "Plano médio", actor: true },
       { kind: "shot", shot: "wide", label: "Plano geral" },
@@ -184,7 +184,7 @@ export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }
     ],
   },
   {
-    id: "cena", label: "Cena", color: "#5fc9b5", add: [
+    id: "cena", label: "Cena", color: "#1fc7a4", add: [
       { kind: "cue", type: "set", label: "Trocar cenário" },
       { kind: "cue", type: "weather", label: "Clima e hora do dia", hint: "chuva, vento, neblina, ondas, amanhecer" },
       { kind: "cue", type: "lightning", label: "Relâmpago" },
@@ -192,7 +192,7 @@ export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }
     ],
   },
   {
-    id: "acoes", label: "Ações", color: "#e0b25a", add: [
+    id: "acoes", label: "Ações", color: "#ff8a3d", add: [
       { kind: "cue", type: "walk", label: "Andar", actor: true },
       { kind: "cue", type: "jump", label: "Pular", actor: true },
       { kind: "cue", type: "climb", label: "Subir / descer / cair", actor: true },
@@ -205,7 +205,7 @@ export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }
     ],
   },
   {
-    id: "tela", label: "Tela", color: "#e58fd0", add: [
+    id: "tela", label: "Tela", color: "#c46bff", add: [
       { kind: "cue", type: "hook", label: "Texto-gancho" },
       { kind: "cue", type: "bubble", label: "Balão de fala", actor: true },
       { kind: "cue", type: "thought", label: "Balão de pensamento", actor: true },

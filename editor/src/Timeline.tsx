@@ -1,6 +1,7 @@
 // Timeline: vozes, legenda e 4 trilhas (Câmera, Cena, Ações, Tela).
 // Cada trilha tem um "+" com as opções dela e pode ser recolhida. Arrastar bloco = mudar o tempo.
 import { useState } from "react";
+import { Mic } from "lucide-react";
 import type { Build, Cue, Scene } from "../../engine/src/scene/types.ts";
 import type { Timeline as TL } from "../../engine/src/scene/timeline";
 import { CUE_META, TRACKS, extent, summary, type AddItem, type Track } from "./cues";
@@ -29,8 +30,8 @@ interface Props {
   onAdd: (item: AddItem, actor: string, smooth: boolean) => void;
 }
 
-const LABEL_W = 132;
-const LANE_H = 20;
+const LABEL_W = 150;
+const LANE_H = 24;
 
 /** Arrasto horizontal: chama `move(deltaSegundos)` sempre a partir do ponto inicial. */
 function drag(e: React.PointerEvent, zoom: number, move: (d: number) => void) {
@@ -120,7 +121,7 @@ export function Timeline(p: Props) {
     const text = summary(it.c, scene);
     return (
       <div key={it.index} className={`block cue ${sel ? "sel" : ""} ${mini ? "mini" : ""}`} title={`${meta.label}: ${text}`}
-        style={{ left: x(it.t), width: Math.max(x(it.t1) - x(it.t), mini ? 4 : 14), top: mini ? 2 : 3 + it.lane * LANE_H, borderColor: color, background: `${color}26`, color }}
+        style={{ left: x(it.t), width: Math.max(x(it.t1) - x(it.t), mini ? 4 : 18), top: mini ? 2 : 3 + it.lane * LANE_H, borderColor: color, background: color, color: "#fff" }}
         onPointerDown={(e) => {
           onSelect({ kind: "cue", index: it.index });
           const key = `cue-${it.index}-${Date.now()}`;
@@ -156,6 +157,7 @@ export function Timeline(p: Props) {
                       onPointerDown={(e) => { onSelect({ kind: "line", id: l.id }); const k = `line-${l.id}-${Date.now()}`; drag(e, zoom, (d) => onMoveLine(l.id, "move", d, k)); }}>
                       <span className="handle in" onPointerDown={(e) => { onSelect({ kind: "line", id: l.id }); const k = `in-${l.id}-${Date.now()}`; drag(e, zoom, (d) => onMoveLine(l.id, "in", d, k)); }} />
                       <span className="voicebar" style={{ left: x(l.voiceStart - l.clipStart), width: x(l.voiceEnd - l.voiceStart) }} />
+                      <Mic size={13} strokeWidth={2.4} className="clip-ico" />
                       <span>{def.text}</span>
                       <span className="handle out" onPointerDown={(e) => { onSelect({ kind: "line", id: l.id }); const k = `out-${l.id}-${Date.now()}`; drag(e, zoom, (d) => onMoveLine(l.id, "out", d, k)); }} />
                     </div>
@@ -194,7 +196,7 @@ export function Timeline(p: Props) {
             );
           })}
 
-          <div className="playhead" style={{ left: LABEL_W + x(time) }} />
+          <div className="playhead" style={{ left: LABEL_W + x(time) }}><span className="ph-time">{Math.floor(time / 60)}:{String(Math.floor(time % 60)).padStart(2, "0")}</span></div>
         </div>
       </div>
     </div>

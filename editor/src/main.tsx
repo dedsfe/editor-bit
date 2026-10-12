@@ -1,4 +1,5 @@
 // Editor OQJF v2: edita projetos/<id>.json, que é exatamente a cena que a engine renderiza.
+import { Undo2, Redo2, Keyboard, Clapperboard, Download, Play, Pause, ZoomIn, ZoomOut, Film } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import type { Analysis, Build, CueType, Scene } from "../../engine/src/scene/types.ts";
@@ -265,18 +266,18 @@ function App() {
   return (
     <div className="app">
       <header>
-        <strong className="brand">OQJF</strong>
+        <strong className="brand"><span className="logo"><Film size={16} strokeWidth={2.4} /></span>OQJF <small>studio</small></strong>
         <select className="project" value={projectId} onChange={(e) => setProjectId(e.target.value)} aria-label="Projeto">
           {projects.map((p) => <option key={p}>{p}</option>)}
         </select>
         <span className="name">{scene.name ?? scene.id}</span>
         <span className="spacer" />
-        <button className="icon" disabled={!hist.canUndo} onClick={hist.undo} title="Desfazer (Cmd+Z)" aria-label="Desfazer">↶</button>
-        <button className="icon" disabled={!hist.canRedo} onClick={hist.redo} title="Refazer (Cmd+Shift+Z)" aria-label="Refazer">↷</button>
+        <button className="icon" disabled={!hist.canUndo} onClick={hist.undo} title="Desfazer (Cmd+Z)" aria-label="Desfazer"><Undo2 size={17} /></button>
+        <button className="icon" disabled={!hist.canRedo} onClick={hist.redo} title="Refazer (Cmd+Shift+Z)" aria-label="Refazer"><Redo2 size={17} /></button>
         <span className="saved" title="Salva sozinho 1 s depois de cada mudança">{saving ? "salvando…" : hist.dirty ? "editando…" : "salvo"}</span>
-        <button className={`ghost ${selection.kind === "scene" ? "on" : ""}`} onClick={() => setSelection(selection.kind === "scene" ? { kind: "none" } : { kind: "scene" })} title="Ajustes da cena">Cena</button>
-        <button className="icon" onClick={() => setHelp((h) => !h)} title="Atalhos (?)" aria-label="Atalhos">?</button>
-        <button className="export" disabled={!!exporting} onClick={exportMp4}>{exporting || "Exportar"}</button>
+        <button className={`ghost ${selection.kind === "scene" ? "on" : ""}`} onClick={() => setSelection(selection.kind === "scene" ? { kind: "none" } : { kind: "scene" })} title="Ajustes da cena"><Clapperboard size={15} /> Cena</button>
+        <button className="icon" onClick={() => setHelp((h) => !h)} title="Atalhos (?)" aria-label="Atalhos"><Keyboard size={17} /></button>
+        <button className="export" disabled={!!exporting} onClick={exportMp4}><Download size={15} strokeWidth={2.4} /> {exporting || "Exportar"}</button>
       </header>
 
       {external && (
@@ -306,12 +307,12 @@ function App() {
       </main>
 
       <div className="transport">
-        <button className="play" onClick={play} aria-label={playing ? "Pausar" : "Tocar"}>{playing ? "❚❚" : "▶"}</button>
+        <button className="play" onClick={play} aria-label={playing ? "Pausar" : "Tocar"}>{playing ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}</button>
         <span className="clock">{clock(time)} <span className="muted">/ {clock(build.duration)}</span></span>
         <span className="status">{status}</span>
         <span className="spacer" />
-        <button className="icon" onClick={() => setZoom((z) => Math.max(8, z / 1.4))} aria-label="Diminuir zoom">−</button>
-        <button className="icon" onClick={() => setZoom((z) => Math.min(90, z * 1.4))} aria-label="Aumentar zoom">+</button>
+        <button className="icon" onClick={() => setZoom((z) => Math.max(8, z / 1.4))} aria-label="Diminuir zoom"><ZoomOut size={17} /></button>
+        <button className="icon" onClick={() => setZoom((z) => Math.min(90, z * 1.4))} aria-label="Aumentar zoom"><ZoomIn size={17} /></button>
       </div>
       <Timeline scene={scene} build={build} tl={tl} time={time} zoom={zoom} selection={selection} defaultActor={mainActor}
         onSeek={seek} onSelect={setSelection} onMoveLine={moveLine} onMoveCue={moveCue} onAdd={onAdd} />
