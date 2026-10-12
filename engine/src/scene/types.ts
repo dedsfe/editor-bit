@@ -82,6 +82,8 @@ export type Cue =
   | (Base & { type: "camera"; x?: number; y?: number; zoom?: number; actor?: string; shot?: CameraShot; dur?: number })
   | (Base & { type: "shake"; amp?: number; dur?: number })
   | (Span & { type: "hook"; text: string; color?: string })
+  /** destaque grande no meio da tela, entra pulando (ex.: "DE CADA DIA"). `y` = altura na tela (padrão 96) */
+  | (Span & { type: "highlight"; text: string; color?: string; y?: number })
   | (Span & { type: "bubble" | "thought"; actor: string; text: string })
   | (Span & { type: "counter"; label: string; value: number; total?: number; color?: string })
   /** afundar até `depth` px (0 = volta pra superfície) em `dur` segundos */
@@ -106,6 +108,11 @@ export type Cue =
   | (Base & { type: "place"; actor: string; x?: number; z?: number; facing?: 1 | -1; hidden?: boolean })
   /** figurantes cochichando (bocas mexendo à toa) */
   | (Span & { type: "murmur" })
+  /**
+   * som de ambiente ou efeito (id de sons/manifest.json). Ambiente em loop toca até `until` (ou o fim);
+   * efeito toca o arquivo inteiro. `volume` 0..1, `fade` em s, `duck` = volume enquanto alguém fala (1 = não abaixa)
+   */
+  | (Span & { type: "sound"; sound: string; volume?: number; fade?: number; duck?: number; loop?: boolean })
   /** troca de cenário (ex.: rua de dia → casa à noite), com fade pro preto de `fade` s */
   | (Base & { type: "set"; set: SetDef; fade?: number });
 

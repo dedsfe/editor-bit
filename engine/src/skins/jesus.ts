@@ -9,7 +9,7 @@ export const jesus: Skin = {
   scale: 2,
   color: "#ffe9a8",
   palette: {
-    H: [107, 68, 35], S: [242, 201, 160], E: [40, 24, 14], M: [34, 10, 14],
+    H: [107, 68, 35], S: [242, 201, 160], s: [176, 128, 96], E: [40, 24, 14], M: [34, 10, 14],
     W: [250, 248, 240], R: [215, 38, 61], L: [90, 58, 30],
     T: [122, 78, 42], D: [74, 46, 23],
   },
@@ -55,6 +55,26 @@ export const jesus: Skin = {
     { name: "mão", follows: "prop", at: [3, 12], grid: ["S"] },
   ],
   variants: {
+    // de joelhos orando, olhos fechados e mãos juntas no peito (sem cajado)
+    kneel: [
+      { name: "cajado", follows: "static", at: [0, 0], grid: [] },
+      { name: "mão", follows: "static", at: [0, 0], grid: [] },
+      { name: "pés", follows: "static", at: [0, 0], grid: [] },
+      {
+        name: "corpo", follows: "body", at: [0, 14],
+        grid: [
+          ".......WSSWW........",
+          ".....WWRRWWWWWW.....",
+          "....WWWRRRSSWWWW....",
+          "....WWWWRRSSWWWW....",
+          ".....WLLLLLLLLLW....",
+          "....WWWWWWRRRWWWW...",
+          "...WWWWWWWWRRRWWWW..",
+          "..WWWWWWWWWWWRRWWWW.",
+          ".DDWWWWWWWWWWWWWWWW.",
+        ],
+      },
+    ],
     // braço direito esticado (estender a mão / segurar alguém)
     reach: [
       {
@@ -76,11 +96,12 @@ export const jesus: Skin = {
       },
     ],
   },
+  poses: { kneel: { dy: 5, eyesClosed: true } },
   feet: {
     stand: ["......SS....SS......", ".....DDD...DDD......"],
     step: [".....SS......SS.....", "....DDD......DDD...."],
     pass: [".......SSSS.........", "......DDDDDD........"],
   },
   mouth: { half: [[8, 6], [9, 6]], open: [[8, 6], [9, 6], [8, 7], [9, 7]], color: "M" },
-  eyes: { pixels: [[7, 4], [11, 4]], lid: "S" },
+  eyes: { pixels: [[7, 4], [11, 4]], lid: "S", closed: "s" },
 };

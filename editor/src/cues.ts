@@ -2,8 +2,17 @@
 import type { Build, Cue, CueType, Scene, TimeRef } from "../../engine/src/scene/types.ts";
 import type { Timeline } from "../../engine/src/scene/timeline";
 import { formatRef, shiftRef } from "../../engine/src/scene/time.ts";
+import type { SoundInfo } from "../../engine/src/scene/sound.ts";
 
-export type Track = "camera" | "cena" | "acoes" | "tela";
+/** Biblioteca de sons (sons/manifest.json), carregada pelo main. As opções do inspetor apontam pra cá. */
+export const SOUNDS: SoundInfo[] = [];
+const SOUND_OPTIONS: [string, string][] = [];
+export function setSounds(list: SoundInfo[]) {
+  SOUNDS.splice(0, SOUNDS.length, ...list);
+  SOUND_OPTIONS.splice(0, SOUND_OPTIONS.length, ...list.map((s): [string, string] => [s.id, `${s.loop ? "🔁 " : ""}${s.id.replace(/_/g, " ")}`]));
+}
+
+export type Track = "camera" | "cena" | "acoes" | "tela" | "sons";
 
 export type Field =
   | { key: string; label: string; kind: "number"; min: number; max: number; step: number; optional?: boolean; hint?: string }
@@ -78,7 +87,7 @@ export const CUE_META: Record<CueType, Meta> = {
   gesture: {
     label: "Gesto", track: "acoes", icon: "✋", fields: [
       { key: "actor", label: "Quem", kind: "actor" },
-      { key: "variant", label: "Gesto", kind: "select", options: [["reach", "Braço esticado / apontar"], ["lookup", "Olhar pra cima"]] },
+      { key: "variant", label: "Gesto", kind: "select", options: [["reach", "Braço esticado / apontar"], ["lookup", "Olhar pra cima"], ["pray", "Orar de braços abertos"], ["kneel", "Ajoelhar e orar"]] },
       { key: "until", label: "Até", kind: "until" },
     ],
   },
@@ -94,6 +103,14 @@ export const CUE_META: Record<CueType, Meta> = {
     label: "Texto-gancho", track: "tela", icon: "T", fields: [
       { key: "text", label: "Texto", kind: "text", long: true },
       { key: "color", label: "Cor", kind: "color", optional: true },
+      { key: "until", label: "Até", kind: "until" },
+    ],
+  },
+  highlight: {
+    label: "Destaque grande", track: "tela", icon: "★", fields: [
+      { key: "text", label: "Texto", kind: "text" },
+      { key: "color", label: "Cor", kind: "color", optional: true },
+      { key: "y", label: "Altura na tela", kind: "number", min: 40, max: 280, step: 2, optional: true, hint: "padrão 96" },
       { key: "until", label: "Até", kind: "until" },
     ],
   },
@@ -157,6 +174,15 @@ export const CUE_META: Record<CueType, Meta> = {
       { key: "fade", label: "Fade pro preto (s)", kind: "number", min: 0, max: 3, step: 0.1, hint: "0 = corte seco" },
     ],
   },
+  sound: {
+    label: "Som", track: "sons", icon: "♪", fields: [
+      { key: "sound", label: "Som", kind: "select", options: SOUND_OPTIONS },
+      { key: "volume", label: "Volume", kind: "number", min: 0, max: 1, step: 0.02 },
+      { key: "fade", label: "Fade de entrada/saída (s)", kind: "number", min: 0, max: 3, step: 0.1, optional: true },
+      { key: "duck", label: "Volume quando alguém fala", kind: "number", min: 0, max: 1, step: 0.05, optional: true, hint: "1 = não abaixa" },
+      { key: "until", label: "Até", kind: "until" },
+    ],
+  },
   card: {
     label: "Card final", track: "tela", icon: "▭", fields: [
       { key: "text", label: "Texto", kind: "text", long: true },
@@ -200,6 +226,8 @@ export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }
       { kind: "cue", type: "reach", label: "Estender a mão", actor: true },
       { kind: "cue", type: "hold", label: "Segurar a mão", actor: true, hint: "brilho quente nas mãos" },
       { kind: "cue", type: "gesture", variant: "lookup", label: "Olhar pra cima", actor: true },
+      { kind: "cue", type: "gesture", variant: "kneel", label: "Ajoelhar e orar", actor: true, hint: "olhos fechados, mãos juntas" },
+      { kind: "cue", type: "gesture", variant: "pray", label: "Orar de braços abertos", actor: true, hint: "só quem tem o gesto (Fariseu)" },
       { kind: "cue", type: "face", label: "Virar", actor: true },
       { kind: "cue", type: "place", label: "Posicionar / esconder", actor: true },
     ],
@@ -207,10 +235,17 @@ export const TRACKS: { id: Track; label: string; color: string; add: AddItem[] }
   {
     id: "tela", label: "Tela", color: "#c46bff", add: [
       { kind: "cue", type: "hook", label: "Texto-gancho" },
+      { kind: "cue", type: "highlight", label: "Destaque grande", hint: "texto enorme no meio, entra pulando" },
       { kind: "cue", type: "bubble", label: "Balão de fala", actor: true },
       { kind: "cue", type: "thought", label: "Balão de pensamento", actor: true },
       { kind: "cue", type: "counter", label: "Contador" },
       { kind: "cue", type: "card", label: "Card final" },
+    ],
+  },
+  {
+    id: "sons", label: "Sons", color: "#e8b04a", add: [
+      { kind: "cue", type: "sound", variant: "loop", label: "Ambiente (fica tocando)", hint: "multidão, vento, pássaros, chuva" },
+      { kind: "cue", type: "sound", variant: "fx", label: "Efeito (toca uma vez)", hint: "whoosh, impacto, passos, porta" },
     ],
   },
 ];
@@ -242,6 +277,11 @@ export function extent(c: Cue, tl: Timeline): { t: number; t1: number } {
       return { t, t1: t + Math.max(dist / (c.speed ?? 24), 0.15) };
     }
     case "face": case "lightning": return { t, t1: t + 0.2 };
+    case "sound": {
+      if (c.until !== undefined) return { t, t1: Math.min(tl.time(c.until), tl.duration) };
+      const info = SOUNDS.find((s) => s.id === c.sound);
+      return { t, t1: info && !(c.loop ?? info.loop) ? t + Math.max(info.duracao, 0.2) : tl.duration };
+    }
     default: return { t, t1 };
   }
 }
@@ -263,7 +303,7 @@ export function summary(c: Cue, scene: Scene): string {
     case "sink": return `${who(c.actor)} ↓${c.depth}`;
     case "reach": case "gesture": return `${who(c.actor)} ✋`;
     case "hold": return `${who(c.actor)} ✋ ${who(c.target)}`;
-    case "hook": case "card": return c.text;
+    case "hook": case "card": case "highlight": return c.text;
     case "bubble": case "thought": return `${who(c.actor)}: ${c.text}`;
     case "counter": return `${c.label} ${c.value}`;
     case "jump": return `${who(c.actor)} pula ×${c.times ?? 3}`;
@@ -271,6 +311,7 @@ export function summary(c: Cue, scene: Scene): string {
     case "place": return `${who(c.actor)}${c.hidden ? " (esconde)" : c.hidden === false ? " (aparece)" : ` → ${c.x ?? ""}`}`;
     case "murmur": return "cochicho";
     case "set": return `→ ${c.set.kind}`;
+    case "sound": return `${c.sound.replace(/_/g, " ")} ${Math.round((c.volume ?? 0.5) * 100)}%`;
   }
 }
 
@@ -290,6 +331,7 @@ export function makeCue(type: CueType, at: TimeRef, ctx: { actor: string; other:
     case "gesture": return { type, at, actor: ctx.actor, variant: ctx.variant ?? "reach", until };
     case "hold": return { type, at, actor: ctx.actor, target: ctx.other, glow: 1, until };
     case "hook": return { type, at, text: "Texto do gancho", until };
+    case "highlight": return { type, at, text: "DESTAQUE", until: shiftRef(at, 1.5) };
     case "bubble": return { type, at, actor: ctx.actor, text: "!", until };
     case "thought": return { type, at, actor: ctx.actor, text: "...", until };
     case "counter": return { type, at, label: "PASSOS:", value: 1 };
@@ -299,5 +341,10 @@ export function makeCue(type: CueType, at: TimeRef, ctx: { actor: string; other:
     case "place": return { type, at, actor: ctx.actor, x: round(pos.x), z: round(pos.z) };
     case "murmur": return { type, at, until };
     case "set": return { type, at, set: { kind: "jericho" }, fade: 0.8 };
+    case "sound": {
+      const loop = ctx.variant !== "fx";
+      const s = SOUNDS.find((x) => x.loop === loop) ?? SOUNDS[0];
+      return loop ? { type, at, sound: s?.id ?? "", volume: 0.2, until: shiftRef(at, 8) } : { type, at, sound: s?.id ?? "", volume: 0.6 };
+    }
   }
 }

@@ -11,13 +11,13 @@ export interface Report { errors: string[]; warnings: string[] }
 
 const REQUIRED: Partial<Record<Cue["type"], string[]>> = {
   walk: ["actor", "x"], face: ["actor", "dir"], sink: ["actor", "depth"], reach: ["actor"], gesture: ["actor", "variant"],
-  hold: ["actor", "target"], hook: ["text"], bubble: ["actor", "text"], thought: ["actor", "text"], counter: ["label", "value"], card: ["text"],
-  jump: ["actor"], climb: ["actor", "height"], place: ["actor"], set: ["set"],
+  hold: ["actor", "target"], hook: ["text"], highlight: ["text"], bubble: ["actor", "text"], thought: ["actor", "text"], counter: ["label", "value"], card: ["text"],
+  jump: ["actor"], climb: ["actor", "height"], place: ["actor"], set: ["set"], sound: ["sound"],
 };
 const ACTOR_KEYS = ["actor", "target"];
 const UNIT = ["rain", "wind", "fog", "lightning", "daylight", "waves", "swell"];
 
-export function validate(scene: Scene, ctx: { sets: string[]; skins: Record<string, Skin>; sources?: string[]; build?: Build }): Report {
+export function validate(scene: Scene, ctx: { sets: string[]; skins: Record<string, Skin>; sources?: string[]; build?: Build; sounds?: string[] }): Report {
   const errors: string[] = [], warnings: string[] = [];
   const lineIds = new Set(scene.lines.map((l) => l.id));
   const isLine = (id: string) => lineIds.has(id);
@@ -55,6 +55,7 @@ export function validate(scene: Scene, ctx: { sets: string[]; skins: Record<stri
     if (c.type === "camera" && c.actor && !scene.actors[c.actor]) errors.push(`${where}: personagem "${c.actor}" não existe`);
     if (c.type === "camera" && c.zoom !== undefined && (c.zoom < 0.5 || c.zoom > 5)) warnings.push(`${where}: zoom ${c.zoom} fora do normal (0.8–4)`);
     if (c.type === "set" && !ctx.sets.includes(c.set?.kind)) errors.push(`${where}: cenário "${c.set?.kind}" não existe`);
+    if (c.type === "sound" && ctx.sounds && !ctx.sounds.includes(c.sound)) errors.push(`${where}: som "${c.sound}" não está em sons/manifest.json`);
     if (c.type === "hold" && c.actor === c.target) errors.push(`${where}: segurando a si mesmo`);
     if (c.type === "gesture") {
       const skin = ctx.skins[scene.actors[c.actor]?.skin ?? ""];

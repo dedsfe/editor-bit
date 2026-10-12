@@ -204,6 +204,10 @@ export class Player {
     let card = false;
     for (const c of tl.active(t)) {
       if (c.type === "hook") ui.hook(c.text, 28, c.color);
+      else if (c.type === "highlight") {
+        const { t: t0, t1 } = tl.span(c);
+        ui.highlight(c.text, t - t0, t1 - t, c.y, c.color);
+      }
       else if (c.type === "bubble" || c.type === "thought") {
         const p = head(c.actor);
         ui.bubble(c.text, p.x, p.y, c.type === "thought" ? "thought" : "speech");

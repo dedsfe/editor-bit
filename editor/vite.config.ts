@@ -8,7 +8,7 @@ import { spawn, spawnSync, type ChildProcessWithoutNullStreams } from "node:chil
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
 // @ts-expect-error módulo .mjs da engine (sem tipos)
-import { analyze, analyzeScene, audioFile, mix } from "../engine/scripts/build.mjs";
+import { analyze, analyzeScene, audioFile, mix, loadSounds } from "../engine/scripts/build.mjs";
 import { layout } from "../engine/src/scene/layout.ts";
 import type { Scene } from "../engine/src/scene/types.ts";
 import { formatScene } from "../engine/src/scene/format.ts";
@@ -102,6 +102,18 @@ function api(): Plugin {
               out[s] = analyze(audioFile(d, s));
             }
             return reply(out);
+          }
+
+          // ---- sons (biblioteca em sons/, lista em sons/manifest.json)
+          if (parts[0] === "sounds" && req.method === "GET") return reply(loadSounds());
+          if (parts[0] === "sound" && req.method === "GET") {
+            const info = (loadSounds() as { id: string; arquivo: string }[]).find((s) => s.id === url.searchParams.get("id"));
+            if (!info) throw new Error("som inexistente");
+            const file = resolve(ROOT, "sons", info.arquivo);
+            if (!file.startsWith(join(ROOT, "sons"))) throw new Error("som inválido");
+            res.setHeader("Content-Type", file.endsWith(".ogg") ? "audio/ogg" : "audio/wav");
+            res.end(await readFile(file));
+            return;
           }
 
           // ---- legenda automática (whisper-cli local)

@@ -75,6 +75,23 @@ export class Overlay {
     this.block(s, this.w / 2, y, this.w - 12, { color: hex(color), scale: 2, lineGap: -2 });
   }
 
+  /**
+   * Destaque grande (escala 3) com faixa escura atrás. Entra pulando: começa maior, assenta e
+   * treme 1 px; some piscando no fim. `age` = segundos desde que entrou, `left` = até sair.
+   */
+  highlight(s: string, age: number, left: number, y = 96, color = "#ffd84a") {
+    if (left < 0.2 && Math.floor(left * 20) % 2) return;
+    const scale = age < 0.08 ? 4 : 3;
+    const lines = wrap(s, this.w - 8, scale);
+    const lh = (LINE_H - 1) * scale;
+    const h = lines.length * lh;
+    const top = Math.round(y - h / 2) + (age < 0.25 ? Math.round(Math.sin(age * 60) * 1) : 0);
+    this.rect(0, top - 6, this.w, h + 10, [12, 10, 20, Math.round(170 * Math.min(1, age / 0.1))]);
+    this.rect(0, top - 6, this.w, 1, hex(color, 200));
+    this.rect(0, top + h + 3, this.w, 1, hex(color, 200));
+    this.block(s, this.w / 2, top, this.w - 8, { color: hex(color), scale, lineGap: -1 });
+  }
+
   /** Balão de fala (ou pensamento) apontando pra (tx, ty), normalmente a cabeça do personagem. */
   bubble(s: string, tx: number, ty: number, kind: "speech" | "thought" = "speech") {
     const maxW = 96;

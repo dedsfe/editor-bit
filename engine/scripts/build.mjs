@@ -7,6 +7,7 @@ import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "no
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { layout, FPS } from "../src/scene/layout.ts";
+import { soundPlan, voiceRanges, DUCK_RAMP } from "../src/scene/sound.ts";
 
 const ENGINE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const ROOT = resolve(ENGINE, "..");
@@ -86,19 +87,48 @@ export function analyzeScene(scene) {
   return out;
 }
 
-/** Mixa as falas (com corte e volume) num arquivo só, do tamanho da cena. */
+/** Sons de sons/manifest.json (lista vazia se a biblioteca não existir). */
+export function loadSounds() {
+  const file = join(ROOT, "sons", "manifest.json");
+  return existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : [];
+}
+
+/** Filtros do ffmpeg pros sons (cue "sound"): loop, volume, fades, atraso e abaixar durante as falas. */
+function soundChains(scene, build, first) {
+  const plan = soundPlan(scene, build, loadSounds());
+  const ranges = voiceRanges(build), R = DUCK_RAMP;
+  const duckExpr = ranges.length
+    ? ranges.map(([a, b]) => `clip(min((t-${a.toFixed(3)}+${R})/${R},(${b.toFixed(3)}+${R}-t)/${R}),0,1)`).reduce((acc, x) => `max(${acc},${x})`)
+    : "0";
+  const inputs = [], chains = [];
+  plan.forEach((s, k) => {
+    // loop: repete o arquivo, mas a entrada para no tamanho certo (sem `-t` o ffmpeg lê pra sempre e trava)
+    inputs.push(...(s.loop ? ["-stream_loop", "-1"] : []), "-t", s.len.toFixed(3), "-i", join(ROOT, "sons", s.file));
+    const len = s.len.toFixed(3), f = s.fade;
+    chains.push(`[${first + k}:a]aresample=48000,aformat=channel_layouts=mono,atrim=0:${len},asetpts=PTS-STARTPTS,volume=${s.volume}` +
+      (f > 0 ? `,afade=t=in:d=${f},afade=t=out:st=${(s.len - f).toFixed(3)}:d=${f}` : "") +
+      `,adelay=${Math.round(s.start * 1000)}:all=1` +
+      (s.duck < 1 ? `,volume='1-${(1 - s.duck).toFixed(3)}*${duckExpr}':eval=frame` : "") + `[s${k}]`);
+  });
+  return { inputs, chains, labels: plan.map((_, k) => `[s${k}]`) };
+}
+
+/** Mixa as falas (com corte e volume) e os sons num arquivo só, do tamanho da cena. */
 export function mix(scene, build, out) {
-  if (!build.lines.length) {
+  const snd = soundChains(scene, build, build.lines.length);
+  if (!build.lines.length && !snd.labels.length) {
     const r = spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=48000:cl=mono", "-t", String(build.duration), "-c:a", "aac", out]);
     if (r.status !== 0) throw new Error(`áudio mudo falhou: ${r.stderr}`);
     return;
   }
-  const inputs = build.lines.flatMap((l) => ["-i", audioFile(scene.audio, l.source)]);
+  const inputs = [...build.lines.flatMap((l) => ["-i", audioFile(scene.audio, l.source)]), ...snd.inputs];
   const chains = build.lines.map((l, i) =>
     `[${i}:a]atrim=start=${l.trimIn}:duration=${l.clipDur},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=mono,` +
     `volume=${l.volume},adelay=${Math.max(0, Math.round(l.clipStart * 1000))}:all=1[a${i}]`);
-  const all = `${build.lines.map((_, i) => `[a${i}]`).join("")}amix=inputs=${build.lines.length}:normalize=0:duration=longest,apad,atrim=0:${build.duration}[out]`;
-  const r = spawnSync("ffmpeg", ["-y", "-v", "error", ...inputs, "-filter_complex", [...chains, all].join(";"),
+  const labels = [...build.lines.map((_, i) => `[a${i}]`), ...snd.labels];
+  const all = `${labels.join("")}amix=inputs=${labels.length}:normalize=0:duration=longest,apad,atrim=0:${build.duration}` +
+    (snd.labels.length ? ",alimiter=limit=0.95:level=disabled" : "") + "[out]";
+  const r = spawnSync("ffmpeg", ["-y", "-v", "error", ...inputs, "-filter_complex", [...chains, ...snd.chains, all].join(";"),
     "-map", "[out]", "-c:a", "aac", "-b:a", "192k", out]);
   if (r.status !== 0) throw new Error(`mix falhou: ${r.stderr}`);
 }

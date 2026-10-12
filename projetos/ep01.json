@@ -8,7 +8,7 @@
   "actors": {
     "andre": { "skin": "andre", "x": 30, "z": 40, "name": "André" },
     "pedro": { "skin": "pedro", "x": 65, "z": 38, "name": "Pedro" },
-    "jesus": { "skin": "jesus", "x": 260, "z": 26, "facing": -1, "name": "Jesus" }
+    "jesus": { "skin": "jesus", "x": 73, "z": 75, "facing": -1, "name": "Jesus" }
   },
   "lines": [
     {
@@ -326,7 +326,8 @@
     { "type": "sink", "at": "11-jesus+4.06", "actor": "pedro", "depth": 20, "dur": 1.2 },
     { "type": "climb", "at": "11-jesus+6.13", "actor": "pedro", "height": 0, "dur": 1.2 },
     { "type": "jump", "at": "12-andre+2.06", "actor": "pedro", "height": 14, "times": 3, "dur": 1.5 },
-    { "type": "jump", "at": "12-andre+2.9", "actor": "pedro", "height": 14, "times": 3, "dur": 1.5 }
+    { "type": "jump", "at": "12-andre+2.9", "actor": "pedro", "height": 14, "times": 3, "dur": 1.5 },
+    { "type": "camera", "at": 0.05, "actor": "jesus", "shot": "close", "dur": 0.6 }
   ],
   "name": "EP01 · Pedro nas águas",
   "weather": { "rain": 1, "wind": 1, "waves": 1, "lightning": 1, "fog": 0.6, "daylight": 0, "swell": 0 }

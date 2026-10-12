@@ -1,0 +1,1106 @@
+{
+  "id": "ep03",
+  "name": "EP03 · Jesus ensina a orar",
+  "audio": "audio/ep03",
+  "intro": 2.6,
+  "outro": 9.8,
+  "gap": 0.35,
+  "set": {
+    "kind": "esquina",
+    "stepX": 100,
+    "stepZ": 6
+  },
+  "camera": {
+    "x": 96,
+    "y": 168,
+    "zoom": 1.1
+  },
+  "actors": {
+    "fariseu": {
+      "skin": "fariseu",
+      "x": 100,
+      "z": 6,
+      "facing": 1,
+      "name": "Fariseu"
+    },
+    "pedro": {
+      "skin": "pedro",
+      "x": 34,
+      "z": 34,
+      "facing": 1,
+      "name": "Pedro"
+    },
+    "jesus": {
+      "skin": "jesus",
+      "x": 104,
+      "z": 18,
+      "facing": 1,
+      "name": "Jesus"
+    },
+    "povo-1": {
+      "skin": "figurante-1",
+      "x": -20,
+      "z": 40,
+      "facing": 1,
+      "name": "Povo 1",
+      "extra": true
+    },
+    "povo-2": {
+      "skin": "figurante-4",
+      "x": 214,
+      "z": 26,
+      "facing": -1,
+      "name": "Povo 2",
+      "extra": true
+    },
+    "povo-3": {
+      "skin": "figurante-2",
+      "x": -30,
+      "z": -4,
+      "facing": 1,
+      "name": "Povo 3",
+      "extra": true
+    },
+    "povo-4": {
+      "skin": "figurante-5",
+      "x": 204,
+      "z": 50,
+      "facing": -1,
+      "name": "Povo 4",
+      "extra": true
+    },
+    "povo-5": {
+      "skin": "figurante-3",
+      "x": -26,
+      "z": 16,
+      "facing": 1,
+      "name": "Povo 5",
+      "extra": true
+    },
+    "povo-6": {
+      "skin": "figurante-6",
+      "x": 224,
+      "z": 58,
+      "facing": -1,
+      "name": "Povo 6",
+      "extra": true
+    }
+  },
+  "lines": [
+    {
+      "id": "01-fariseu",
+      "text": "Ó Deus, eu te agradeço porque jejuo duas vezes na semana, dou o dízimo de tudo… e oro BEM alto pra todo mundo ver!",
+      "words": [
+        {
+          "w": "Ó",
+          "t0": 1.67,
+          "t1": 0.51
+        },
+        {
+          "w": "Deus,",
+          "t0": 0.51,
+          "t1": 1.05
+        },
+        {
+          "w": "eu",
+          "t0": 1.05,
+          "t1": 1.57
+        },
+        {
+          "w": "te",
+          "t0": 1.57,
+          "t1": 1.66
+        },
+        {
+          "w": "agradeço",
+          "t0": 1.66,
+          "t1": 2.84
+        },
+        {
+          "w": "porque",
+          "t0": 2.84,
+          "t1": 3.41
+        },
+        {
+          "w": "jejuo",
+          "t0": 3.41,
+          "t1": 3.93
+        },
+        {
+          "w": "duas",
+          "t0": 3.93,
+          "t1": 4.46
+        },
+        {
+          "w": "vezes",
+          "t0": 4.46,
+          "t1": 5.12
+        },
+        {
+          "w": "na",
+          "t0": 5.12,
+          "t1": 5.38
+        },
+        {
+          "w": "semana,",
+          "t0": 5.38,
+          "t1": 6.43
+        },
+        {
+          "w": "dou",
+          "t0": 6.43,
+          "t1": 6.73
+        },
+        {
+          "w": "o",
+          "t0": 6.73,
+          "t1": 6.81
+        },
+        {
+          "w": "dízimo",
+          "t0": 6.81,
+          "t1": 7.39
+        },
+        {
+          "w": "de",
+          "t0": 7.39,
+          "t1": 7.56
+        },
+        {
+          "w": "tudo…",
+          "t0": 7.56,
+          "t1": 8.2
+        },
+        {
+          "w": "e",
+          "t0": 8.2,
+          "t1": 8.2
+        },
+        {
+          "w": "oro",
+          "t0": 8.2,
+          "t1": 8.7
+        },
+        {
+          "w": "BEM",
+          "t0": 8.7,
+          "t1": 8.76
+        },
+        {
+          "w": "alto",
+          "t0": 8.76,
+          "t1": 9.06
+        },
+        {
+          "w": "pra",
+          "t0": 9.06,
+          "t1": 9.32
+        },
+        {
+          "w": "todo",
+          "t0": 9.32,
+          "t1": 9.86
+        },
+        {
+          "w": "mundo",
+          "t0": 9.86,
+          "t1": 10.11
+        },
+        {
+          "w": "ver!",
+          "t0": 10.11,
+          "t1": 10.4
+        }
+      ],
+      "trimIn": 1.5
+    },
+    {
+      "id": "02-pedro",
+      "text": "Caraca, mermão! O cara ora bonito mesmo, hein? Eu nem sei falar assim.",
+      "words": [
+        {
+          "w": "Caraca,",
+          "t0": 1.43,
+          "t1": 1.35
+        },
+        {
+          "w": "mermão!",
+          "t0": 1.35,
+          "t1": 2.27
+        },
+        {
+          "w": "O",
+          "t0": 2.27,
+          "t1": 2.34
+        },
+        {
+          "w": "cara",
+          "t0": 2.34,
+          "t1": 2.83
+        },
+        {
+          "w": "ora",
+          "t0": 2.83,
+          "t1": 2.99
+        },
+        {
+          "w": "bonito",
+          "t0": 2.99,
+          "t1": 3.53
+        },
+        {
+          "w": "mesmo,",
+          "t0": 3.53,
+          "t1": 4.4
+        },
+        {
+          "w": "hein?",
+          "t0": 4.4,
+          "t1": 4.87
+        },
+        {
+          "w": "Eu",
+          "t0": 4.87,
+          "t1": 4.93
+        },
+        {
+          "w": "nem",
+          "t0": 4.93,
+          "t1": 5.25
+        },
+        {
+          "w": "sei",
+          "t0": 5.25,
+          "t1": 5.33
+        },
+        {
+          "w": "falar",
+          "t0": 5.33,
+          "t1": 5.66
+        },
+        {
+          "w": "assim.",
+          "t0": 5.66,
+          "t1": 6
+        }
+      ],
+      "trimIn": 1.3
+    },
+    {
+      "id": "03-pedro",
+      "text": "Senhor, ensina a gente a orar!",
+      "gap": 3.4,
+      "trimIn": 1.65
+    },
+    {
+      "id": "04-pedro",
+      "text": "Tem que ser comprido igual daquele cara?",
+      "trimIn": 0.8,
+      "trimOut": 2.9
+    },
+    {
+      "id": "05-jesus",
+      "text": "E, orando, não useis de vãs repetições, como os gentios, que pensam que, por muito falarem, hão de ser ouvidos.",
+      "words": [
+        {
+          "w": "E,",
+          "t0": 0.6,
+          "t1": 0.61
+        },
+        {
+          "w": "orando,",
+          "t0": 0.61,
+          "t1": 2.21
+        },
+        {
+          "w": "não",
+          "t0": 2.21,
+          "t1": 2.5
+        },
+        {
+          "w": "useis",
+          "t0": 2.5,
+          "t1": 3.69
+        },
+        {
+          "w": "de",
+          "t0": 3.69,
+          "t1": 3.82
+        },
+        {
+          "w": "vãs",
+          "t0": 3.82,
+          "t1": 4.3
+        },
+        {
+          "w": "repetições,",
+          "t0": 4.3,
+          "t1": 6.56
+        },
+        {
+          "w": "como",
+          "t0": 6.56,
+          "t1": 6.67
+        },
+        {
+          "w": "os",
+          "t0": 6.67,
+          "t1": 6.89
+        },
+        {
+          "w": "gentios,",
+          "t0": 6.89,
+          "t1": 7.74
+        },
+        {
+          "w": "que",
+          "t0": 7.74,
+          "t1": 8.05
+        },
+        {
+          "w": "pensam",
+          "t0": 8.05,
+          "t1": 8.66
+        },
+        {
+          "w": "que,",
+          "t0": 8.66,
+          "t1": 9.35
+        },
+        {
+          "w": "por",
+          "t0": 9.35,
+          "t1": 9.51
+        },
+        {
+          "w": "muito",
+          "t0": 9.51,
+          "t1": 10
+        },
+        {
+          "w": "falarem,",
+          "t0": 10,
+          "t1": 10.62
+        },
+        {
+          "w": "hão",
+          "t0": 10.62,
+          "t1": 11.12
+        },
+        {
+          "w": "de",
+          "t0": 11.12,
+          "t1": 11.22
+        },
+        {
+          "w": "ser",
+          "t0": 11.22,
+          "t1": 11.42
+        },
+        {
+          "w": "ouvidos.",
+          "t0": 11.42,
+          "t1": 12.13
+        }
+      ],
+      "gap": 0.6,
+      "trimIn": 0.45
+    },
+    {
+      "id": "06-jesus",
+      "text": "Mas tu, quando orares, entra no teu aposento e, fechando a tua porta, ora a teu Pai, que está em oculto.",
+      "words": [
+        {
+          "w": "Mas",
+          "t0": 2.17,
+          "t1": 0.83
+        },
+        {
+          "w": "tu,",
+          "t0": 0.83,
+          "t1": 2.18
+        },
+        {
+          "w": "quando",
+          "t0": 2.18,
+          "t1": 3.74
+        },
+        {
+          "w": "orares,",
+          "t0": 3.74,
+          "t1": 5.23
+        },
+        {
+          "w": "entra",
+          "t0": 5.23,
+          "t1": 5.64
+        },
+        {
+          "w": "no",
+          "t0": 5.64,
+          "t1": 5.86
+        },
+        {
+          "w": "teu",
+          "t0": 5.86,
+          "t1": 6.19
+        },
+        {
+          "w": "aposento",
+          "t0": 6.19,
+          "t1": 7.06
+        },
+        {
+          "w": "e,",
+          "t0": 7.06,
+          "t1": 7.63
+        },
+        {
+          "w": "fechando",
+          "t0": 7.63,
+          "t1": 8.45
+        },
+        {
+          "w": "a",
+          "t0": 8.45,
+          "t1": 8.47
+        },
+        {
+          "w": "tua",
+          "t0": 8.47,
+          "t1": 8.82
+        },
+        {
+          "w": "porta,",
+          "t0": 8.82,
+          "t1": 9.63
+        },
+        {
+          "w": "ora",
+          "t0": 9.63,
+          "t1": 10.06
+        },
+        {
+          "w": "a",
+          "t0": 10.06,
+          "t1": 10.09
+        },
+        {
+          "w": "teu",
+          "t0": 10.09,
+          "t1": 10.3
+        },
+        {
+          "w": "Pai,",
+          "t0": 10.3,
+          "t1": 11.1
+        },
+        {
+          "w": "que",
+          "t0": 11.1,
+          "t1": 11.2
+        },
+        {
+          "w": "está",
+          "t0": 11.2,
+          "t1": 11.65
+        },
+        {
+          "w": "em",
+          "t0": 11.65,
+          "t1": 11.7
+        },
+        {
+          "w": "oculto.",
+          "t0": 11.7,
+          "t1": 11.93
+        }
+      ],
+      "trimIn": 2.0
+    },
+    {
+      "id": "07-pedro",
+      "text": "Ué… sem plateia?",
+      "trimIn": 0.65
+    },
+    {
+      "id": "08-jesus",
+      "text": "Portanto, vós orareis assim: Pai nosso, que estás nos céus, santificado seja o teu nome.",
+      "words": [
+        {
+          "w": "Portanto,",
+          "t0": 1.81,
+          "t1": 2.02
+        },
+        {
+          "w": "vós",
+          "t0": 2.02,
+          "t1": 2.63
+        },
+        {
+          "w": "orareis",
+          "t0": 2.63,
+          "t1": 4.03
+        },
+        {
+          "w": "assim:",
+          "t0": 4.03,
+          "t1": 5.33
+        },
+        {
+          "w": "Pai",
+          "t0": 5.33,
+          "t1": 5.89
+        },
+        {
+          "w": "nosso,",
+          "t0": 5.89,
+          "t1": 6.34
+        },
+        {
+          "w": "que",
+          "t0": 6.34,
+          "t1": 6.8
+        },
+        {
+          "w": "estás",
+          "t0": 6.8,
+          "t1": 7.35
+        },
+        {
+          "w": "nos",
+          "t0": 7.35,
+          "t1": 7.6
+        },
+        {
+          "w": "céus,",
+          "t0": 7.6,
+          "t1": 8.51
+        },
+        {
+          "w": "santificado",
+          "t0": 8.51,
+          "t1": 9.34
+        },
+        {
+          "w": "seja",
+          "t0": 9.34,
+          "t1": 9.96
+        },
+        {
+          "w": "o",
+          "t0": 9.96,
+          "t1": 9.96
+        },
+        {
+          "w": "teu",
+          "t0": 9.96,
+          "t1": 10.29
+        },
+        {
+          "w": "nome.",
+          "t0": 10.29,
+          "t1": 10.53
+        }
+      ],
+      "gap": 0.6,
+      "trimIn": 1.65
+    },
+    {
+      "id": "09-jesus",
+      "text": "O pão nosso de cada dia dá-nos hoje.",
+      "words": [
+        {
+          "w": "O",
+          "t0": 1.07,
+          "t1": 0.48
+        },
+        {
+          "w": "pão",
+          "t0": 0.48,
+          "t1": 1.05
+        },
+        {
+          "w": "nosso",
+          "t0": 1.05,
+          "t1": 1.08
+        },
+        {
+          "w": "de",
+          "t0": 1.08,
+          "t1": 1.32
+        },
+        {
+          "w": "cada",
+          "t0": 1.32,
+          "t1": 1.88
+        },
+        {
+          "w": "dia",
+          "t0": 1.88,
+          "t1": 2.21
+        },
+        {
+          "w": "dá-nos",
+          "t0": 2.21,
+          "t1": 2.76
+        },
+        {
+          "w": "hoje.",
+          "t0": 2.76,
+          "t1": 3.43
+        }
+      ],
+      "trimIn": 0.9
+    },
+    {
+      "id": "10-fariseu",
+      "text": "…e também sou humilde! MUITO humilde! MAIS humilde!",
+      "gap": 1.8,
+      "trimIn": 4.85
+    }
+  ],
+  "cues": [
+    {
+      "type": "hook",
+      "at": 0,
+      "until": "01-fariseu+0.6",
+      "text": "Pedro achava que oração boa era oração COMPRIDA. Jesus mostrou o contrário."
+    },
+    {
+      "type": "place",
+      "actor": "jesus",
+      "at": 0,
+      "hidden": true
+    },
+    {
+      "type": "walk",
+      "actor": "povo-1",
+      "at": 0.3,
+      "x": 46,
+      "speed": 24
+    },
+    {
+      "type": "walk",
+      "actor": "povo-2",
+      "at": 0.6,
+      "x": 142,
+      "speed": 22,
+      "z": 14
+    },
+    {
+      "type": "walk",
+      "actor": "povo-3",
+      "at": 0,
+      "x": 240,
+      "speed": 16
+    },
+    {
+      "type": "walk",
+      "actor": "povo-4",
+      "at": 1.2,
+      "x": 158,
+      "speed": 22,
+      "z": 40
+    },
+    {
+      "type": "walk",
+      "actor": "povo-5",
+      "at": "01-fariseu+0.5",
+      "x": 72,
+      "z": -4,
+      "speed": 26
+    },
+    {
+      "type": "walk",
+      "actor": "povo-6",
+      "at": "01-fariseu+2",
+      "x": -40,
+      "speed": 28
+    },
+    {
+      "type": "face",
+      "actor": "povo-2",
+      "at": "01-fariseu-0.4",
+      "dir": -1
+    },
+    {
+      "type": "gesture",
+      "actor": "fariseu",
+      "variant": "pray",
+      "at": "01-fariseu-0.4",
+      "until": "01-fariseu:end+0.4"
+    },
+    {
+      "type": "counter",
+      "label": "PLATEIA:",
+      "value": 2,
+      "at": "01-fariseu+0.6"
+    },
+    {
+      "type": "counter",
+      "label": "PLATEIA:",
+      "value": 3,
+      "at": "01-fariseu+2.6"
+    },
+    {
+      "type": "counter",
+      "label": "PLATEIA:",
+      "value": 4,
+      "at": "01-fariseu+4.6",
+      "until": "01-fariseu:end+0.3"
+    },
+    {
+      "type": "murmur",
+      "at": "01-fariseu:end+0.2",
+      "until": "02-pedro"
+    },
+    {
+      "type": "camera",
+      "at": 0,
+      "x": 96,
+      "y": 168,
+      "zoom": 1.1,
+      "dur": 0
+    },
+    {
+      "type": "camera",
+      "at": "01-fariseu+0.8",
+      "actor": "fariseu",
+      "shot": "medium",
+      "dur": 3
+    },
+    {
+      "type": "shake",
+      "at": "01-fariseu+7.0",
+      "amp": 1.5,
+      "dur": 0.5
+    },
+    {
+      "type": "camera",
+      "at": "02-pedro-0.15",
+      "actor": "pedro",
+      "shot": "medium",
+      "dur": 0
+    },
+    {
+      "type": "walk",
+      "actor": "povo-1",
+      "at": "02-pedro+1",
+      "x": 230,
+      "speed": 24
+    },
+    {
+      "type": "walk",
+      "actor": "povo-4",
+      "at": "02-pedro+0.5",
+      "x": -40,
+      "speed": 22
+    },
+    {
+      "type": "set",
+      "at": "02-pedro:end+0.5",
+      "set": {
+        "kind": "monte",
+        "rockX": 118,
+        "rockZ": 14,
+        "treeX": 20
+      },
+      "fade": 1.2
+    },
+    {
+      "type": "place",
+      "actor": "povo-1",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "povo-2",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "povo-3",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "povo-4",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "povo-5",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "povo-6",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "fariseu",
+      "at": "02-pedro:end+0.5",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "jesus",
+      "at": "02-pedro:end+0.5",
+      "x": 104,
+      "z": 18,
+      "facing": 1,
+      "hidden": false
+    },
+    {
+      "type": "place",
+      "actor": "pedro",
+      "at": "02-pedro:end+0.5",
+      "x": -14,
+      "z": 26,
+      "facing": 1
+    },
+    {
+      "type": "gesture",
+      "actor": "jesus",
+      "variant": "kneel",
+      "at": "02-pedro:end+0.5",
+      "until": "03-pedro:end+0.3"
+    },
+    {
+      "type": "camera",
+      "at": "02-pedro:end+0.5",
+      "x": 104,
+      "y": 170,
+      "zoom": 1.2,
+      "dur": 0
+    },
+    {
+      "type": "camera",
+      "at": "02-pedro:end+0.9",
+      "actor": "jesus",
+      "shot": "medium",
+      "dur": 2.6
+    },
+    {
+      "type": "walk",
+      "actor": "pedro",
+      "at": "02-pedro:end+1.1",
+      "x": 70,
+      "z": 24,
+      "speed": 34
+    },
+    {
+      "type": "camera",
+      "at": "03-pedro-0.3",
+      "x": 88,
+      "y": 176,
+      "zoom": 1.7,
+      "dur": 0.6
+    },
+    {
+      "type": "face",
+      "actor": "jesus",
+      "at": "03-pedro:end+0.4",
+      "dir": -1
+    },
+    {
+      "type": "camera",
+      "at": "05-jesus-0.2",
+      "actor": "jesus",
+      "shot": "medium",
+      "dur": 0.5
+    },
+    {
+      "type": "camera",
+      "at": "05-jesus+3",
+      "actor": "jesus",
+      "shot": "close",
+      "dur": 6
+    },
+    {
+      "type": "camera",
+      "at": "06-jesus-0.3",
+      "x": 88,
+      "y": 176,
+      "zoom": 1.7,
+      "dur": 0.6
+    },
+    {
+      "type": "camera",
+      "at": "07-pedro-0.1",
+      "actor": "pedro",
+      "shot": "close",
+      "dur": 0
+    },
+    {
+      "type": "thought",
+      "actor": "pedro",
+      "text": "?",
+      "at": "07-pedro",
+      "until": "07-pedro:end+0.3"
+    },
+    {
+      "type": "camera",
+      "at": "08-jesus-0.2",
+      "actor": "jesus",
+      "shot": "medium",
+      "dur": 0
+    },
+    {
+      "type": "gesture",
+      "actor": "jesus",
+      "variant": "lookup",
+      "at": "08-jesus+2.2",
+      "until": "08-jesus:end"
+    },
+    {
+      "type": "camera",
+      "at": "08-jesus+1",
+      "actor": "jesus",
+      "shot": "close",
+      "dur": 8
+    },
+    {
+      "type": "highlight",
+      "text": "DE CADA DIA",
+      "at": "09-jesus+0.75",
+      "until": "09-jesus:end+1.1"
+    },
+    {
+      "type": "set",
+      "at": "09-jesus:end+1.3",
+      "set": {
+        "kind": "esquina",
+        "stepX": 100,
+        "stepZ": 6
+      },
+      "fade": 0
+    },
+    {
+      "type": "place",
+      "actor": "jesus",
+      "at": "09-jesus:end+1.3",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "pedro",
+      "at": "09-jesus:end+1.3",
+      "hidden": true
+    },
+    {
+      "type": "place",
+      "actor": "fariseu",
+      "at": "09-jesus:end+1.3",
+      "x": 100,
+      "z": 6,
+      "facing": 1,
+      "hidden": false
+    },
+    {
+      "type": "camera",
+      "at": "09-jesus:end+1.3",
+      "x": 100,
+      "y": 176,
+      "zoom": 1.9,
+      "dur": 0
+    },
+    {
+      "type": "gesture",
+      "actor": "fariseu",
+      "variant": "pray",
+      "at": "10-fariseu-0.6",
+      "until": "10-fariseu:end+0.5"
+    },
+    {
+      "type": "camera",
+      "at": "10-fariseu+0.6",
+      "x": 96,
+      "y": 166,
+      "zoom": 1.0,
+      "dur": 2.2
+    },
+    {
+      "type": "counter",
+      "label": "PLATEIA:",
+      "value": 0,
+      "color": "#ff5a5a",
+      "at": "10-fariseu+1.4",
+      "until": "10-fariseu:end+0.5"
+    },
+    {
+      "type": "card",
+      "at": "10-fariseu:end+0.7",
+      "until": "10-fariseu:end+3.8",
+      "text": "Jesus ensinou a pedir o pão DE CADA DIA. Oração também é todo dia."
+    },
+    {
+      "type": "card",
+      "at": "10-fariseu:end+3.8",
+      "until": "10-fariseu:end+6.6",
+      "text": "Você ora mais pra Deus ouvir ou pra alguém ver? 👇",
+      "color": "#ffd84a"
+    },
+    {
+      "type": "card",
+      "at": "10-fariseu:end+6.6",
+      "until": 999,
+      "text": "Seu momento a sós com Deus, todo dia: Oração Diária 🙏"
+    },
+    {
+      "type": "sound",
+      "sound": "ep03_esquina_mercado",
+      "at": 0,
+      "until": "02-pedro:end+0.5",
+      "volume": 0.45,
+      "fade": 0.4,
+      "duck": 0.4
+    },
+    {
+      "type": "sound",
+      "sound": "whoosh_transicao",
+      "at": "02-pedro:end+0.35",
+      "volume": 0.7
+    },
+    {
+      "type": "sound",
+      "sound": "ep03_monte_amanhecer",
+      "at": "02-pedro:end+0.5",
+      "until": "09-jesus:end+1.3",
+      "volume": 0.45,
+      "fade": 0.6,
+      "duck": 0.35
+    },
+    {
+      "type": "sound",
+      "sound": "passos_trilha",
+      "at": "02-pedro:end+1.1",
+      "until": "02-pedro:end+3.6",
+      "volume": 0.45,
+      "fade": 0.2,
+      "duck": 1
+    },
+    {
+      "type": "sound",
+      "sound": "impacto_curto",
+      "at": "09-jesus:end+1.3",
+      "volume": 0.5
+    },
+    {
+      "type": "sound",
+      "sound": "vento_leve",
+      "at": "09-jesus:end+1.3",
+      "volume": 0.2,
+      "fade": 0.8,
+      "duck": 0.6
+    }
+  ]
+}

@@ -20,7 +20,7 @@ export interface ActorState {
 
 export interface HoldState { actor: string; target: string; k: number; glow: number }
 
-export const SPANS = ["hook", "bubble", "thought", "counter", "gesture", "reach", "hold", "card", "murmur"];
+export const SPANS = ["hook", "highlight", "bubble", "thought", "counter", "gesture", "reach", "hold", "card", "murmur"];
 
 /** Clima em t + o brilho do relâmpago (0..1) e quando caíram os raios ativos. */
 export type Env = Partial<Weather> & { flash: number; strikes: number[] };
@@ -106,6 +106,13 @@ export class Timeline {
       const tx = (c as { x: number }).x, tz = c.type === "walk" ? c.z ?? z : z;
       const dur = c.type === "walk" ? Math.hypot(tx - x, tz - z) / (c.speed ?? 24) : (c as { dur?: number }).dur ?? 1.2;
       if (tx !== x) facing = tx > x ? 1 : -1;
+      // outro deslocamento começou antes do fim deste (ex.: "place" na troca de cena): para onde estava
+      const cut = moves.find((m) => m.t > t0 && m.t < t0 + dur && m.t <= t);
+      if (cut) {
+        const k = (cut.t - t0) / dur;
+        x += (tx - x) * k; z += (tz - z) * k;
+        continue;
+      }
       if (t < t0 + dur) {
         const k = (t - t0) / dur;
         x += (tx - x) * k; z += (tz - z) * k;

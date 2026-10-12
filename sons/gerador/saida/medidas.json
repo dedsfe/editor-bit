@@ -1,0 +1,61 @@
+{
+  "tempo_geracao_segundos": 0.532,
+  "arquivos": [
+    {
+      "arquivo": "chuva.wav",
+      "duracao": 12,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "trovao.wav",
+      "duracao": 6,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "vento.wav",
+      "duracao": 12,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "ondas.wav",
+      "duracao": 15,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "passos_areia.wav",
+      "duracao": 8,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "passos_agua.wav",
+      "duracao": 8,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "passos_madeira.wav",
+      "duracao": 8,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    },
+    {
+      "arquivo": "fogo.wav",
+      "duracao": 12,
+      "sample_rate": 48000,
+      "seed": 20261012,
+      "origem": "síntese original, sem gravações"
+    }
+  ]
+}

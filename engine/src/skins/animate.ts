@@ -28,7 +28,8 @@ export function composeSkin(s: Skin, p: Pose): Grid {
   const put = (x: number, y: number, c: string) => {
     if (c !== "." && x >= 0 && x < s.w && y >= 0 && y < s.h) g[y][x] = c;
   };
-  const headDy = p.breathe - p.bob;
+  const extra = p.variant ? s.poses?.[p.variant] : undefined;
+  const headDy = p.breathe - p.bob + (extra?.dy ?? 0);
   const offset = (f: string): [number, number] =>
     f === "head" ? [0, headDy] : f === "body" ? [0, -p.bob] : f === "prop" ? [p.propDx, -p.bob] : [0, 0];
 
@@ -51,9 +52,10 @@ export function composeSkin(s: Skin, p: Pose): Grid {
       put(x, yy - 1, eye);
     }
   }
-  if (p.blink) for (const [x, y] of s.eyes.pixels) if (g[y + headDy]?.[x] !== ".") put(x, y + headDy, s.eyes.lid);
+  const lid = extra?.eyesClosed ? s.eyes.closed ?? s.eyes.lid : s.eyes.lid;
+  if (p.blink || extra?.eyesClosed) for (const [x, y] of s.eyes.pixels) if (g[y + headDy]?.[x] !== ".") put(x, y + headDy, lid);
   const mouth = p.mouth === 2 ? s.mouth.open : p.mouth === 1 ? s.mouth.half : [];
   for (const [x, y] of mouth) put(x, y + headDy, s.mouth.color);
-  s.feet[p.feet].forEach((row, i) => [...row].forEach((c, x) => put(x, s.h - feetRows + i, c)));
+  if (!swap?.some((v) => v.name === "pés")) s.feet[p.feet].forEach((row, i) => [...row].forEach((c, x) => put(x, s.h - feetRows + i, c)));
   return g.map((r) => r.join(""));
 }

@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import { createServer } from "vite";
-import { build, loadScene, ROOT } from "./build.mjs";
+import { build, loadScene, loadSounds, ROOT } from "./build.mjs";
 import { openBrowser, ENGINE } from "./browser.mjs";
 
 const id = process.argv[2];
@@ -16,7 +16,7 @@ const sources = readdirSync(join(ROOT, scene.audio)).map((f) => f.replace(/\.[^.
 const vite = await createServer({ root: ENGINE, server: { middlewareMode: true }, logLevel: "error", appType: "custom" });
 const load = (p) => vite.ssrLoadModule(p);
 const [{ validate }, { SETS }, { SKINS }] = await Promise.all([load("/src/scene/validate.ts"), load("/src/sets/index.ts"), load("/src/skins/index.ts")]);
-const ctx = { sets: Object.keys(SETS), skins: SKINS, sources };
+const ctx = { sets: Object.keys(SETS), skins: SKINS, sources, sounds: loadSounds().map((s) => s.id) };
 
 let report = validate(scene, ctx);
 let json;

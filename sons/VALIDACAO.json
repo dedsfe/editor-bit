@@ -1,0 +1,266 @@
+{
+  "data": "2026-10-12",
+  "biblioteca": 32,
+  "procedural": 8,
+  "status": "aprovado nas verificações técnicas",
+  "escuta_humana": "não realizada; necessária para certificação perceptiva/linguística",
+  "erros": [],
+  "medidas": [
+    {
+      "id": "whoosh_transicao",
+      "duracao": 0.137667,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.853,
+      "salto_emenda": 0.0,
+      "dc": 0.00187
+    },
+    {
+      "id": "passaros_manha",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -26.819,
+      "salto_emenda": 0.0,
+      "dc": 6e-06
+    },
+    {
+      "id": "vento_leve",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -28.352,
+      "salto_emenda": 0.0,
+      "dc": 3e-06
+    },
+    {
+      "id": "vento_forte",
+      "duracao": 7.241,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.854,
+      "salto_emenda": 0.0,
+      "dc": 4.1e-05
+    },
+    {
+      "id": "ondas_calmas",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -27.509,
+      "salto_emenda": 0.0,
+      "dc": 5.8e-05
+    },
+    {
+      "id": "splash_lago",
+      "duracao": 1.9475,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -28.209,
+      "salto_emenda": 0.0,
+      "dc": 0.0
+    },
+    {
+      "id": "respingo",
+      "duracao": 1.067542,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -35.694,
+      "salto_emenda": 0.0,
+      "dc": 1e-06
+    },
+    {
+      "id": "bolhas_afundando",
+      "duracao": 3.946,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -18.854,
+      "salto_emenda": 0.0,
+      "dc": 7e-06
+    },
+    {
+      "id": "chuva",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -24.924,
+      "salto_emenda": 0.0,
+      "dc": 1e-06
+    },
+    {
+      "id": "chuva_forte_vento",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -13.855,
+      "salto_emenda": 0.0,
+      "dc": 0.000212
+    },
+    {
+      "id": "trovao_perto",
+      "duracao": 10.0,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.813,
+      "salto_emenda": 0.0,
+      "dc": 7e-06
+    },
+    {
+      "id": "trovao_longe",
+      "duracao": 11.946896,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -28.077,
+      "salto_emenda": 0.0,
+      "dc": 1e-06
+    },
+    {
+      "id": "grilos_noite",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -22.334,
+      "salto_emenda": 0.0,
+      "dc": 9.8e-05
+    },
+    {
+      "id": "fogueira",
+      "duracao": 15.407208,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -26.453,
+      "salto_emenda": 0.0,
+      "dc": 6e-06
+    },
+    {
+      "id": "galho_quebrando",
+      "duracao": 0.260437,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -24.411,
+      "salto_emenda": 0.0,
+      "dc": 0.000121
+    },
+    {
+      "id": "madeira_tensao",
+      "duracao": 0.484208,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.502,
+      "salto_emenda": 0.0,
+      "dc": 0.00309
+    },
+    {
+      "id": "porta_madeira",
+      "duracao": 2.272417,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -26.357,
+      "salto_emenda": 0.0,
+      "dc": 4e-06
+    },
+    {
+      "id": "moeda_caindo",
+      "duracao": 3.0,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -28.787,
+      "salto_emenda": 0.0,
+      "dc": 0.0
+    },
+    {
+      "id": "ovelha",
+      "duracao": 0.961875,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.071,
+      "salto_emenda": 0.0,
+      "dc": 5.4e-05
+    },
+    {
+      "id": "leao_rugido",
+      "duracao": 2.234396,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -16.417,
+      "salto_emenda": 0.0,
+      "dc": 0.000304
+    },
+    {
+      "id": "leao_rosnado",
+      "duracao": 3.250458,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -20.962,
+      "salto_emenda": 0.0,
+      "dc": 4e-06
+    },
+    {
+      "id": "risada_abafada",
+      "duracao": 3.548333,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -27.769,
+      "salto_emenda": 0.0,
+      "dc": 1e-06
+    },
+    {
+      "id": "passos_trilha",
+      "duracao": 8.0,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -32.926,
+      "salto_emenda": 0.0,
+      "dc": 1e-06
+    },
+    {
+      "id": "passo_madeira",
+      "duracao": 0.109958,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.358,
+      "salto_emenda": 0.0,
+      "dc": 0.001787
+    },
+    {
+      "id": "impacto_curto",
+      "duracao": 0.421104,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -22.085,
+      "salto_emenda": 0.0,
+      "dc": 0.000834
+    },
+    {
+      "id": "batida_madeira",
+      "duracao": 0.121458,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -22.945,
+      "salto_emenda": 0.0,
+      "dc": 0.003517
+    },
+    {
+      "id": "ceramica_contato",
+      "duracao": 0.284917,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -26.622,
+      "salto_emenda": 0.0,
+      "dc": 0.001037
+    },
+    {
+      "id": "brilho_suave",
+      "duracao": 1.083187,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -24.582,
+      "salto_emenda": 0.0,
+      "dc": 0.000463
+    },
+    {
+      "id": "passos_pedra",
+      "duracao": 5.102812,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -33.533,
+      "salto_emenda": 0.0,
+      "dc": 7e-06
+    },
+    {
+      "id": "multidao_murmurio",
+      "duracao": 19.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -20.15,
+      "salto_emenda": 0.0,
+      "dc": 1.2e-05
+    },
+    {
+      "id": "ep03_monte_amanhecer",
+      "duracao": 17.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -27.11,
+      "salto_emenda": 0.0,
+      "dc": 5e-06
+    },
+    {
+      "id": "ep03_esquina_mercado",
+      "duracao": 17.25,
+      "pico_dbfs": -6.0,
+      "rms_dbfs": -21.714,
+      "salto_emenda": 0.0,
+      "dc": 1.8e-05
+    }
+  ]
+}

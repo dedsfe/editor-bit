@@ -6,7 +6,7 @@ import { composeSkin, REST, type Pose } from "../src/skins/animate";
 
 const poses: Pose[] = [
   REST, { ...REST, mouth: 2 }, { ...REST, blink: true },
-  { ...REST, feet: "step", bob: 1, propDx: 1 }, { ...REST, variant: "reach" },
+  { ...REST, feet: "step", bob: 1, propDx: 1 }, { ...REST, variant: "reach" }, { ...REST, variant: "pray" }, { ...REST, variant: "kneel" },
 ];
 const skins = Object.values(SKINS);
 const cw = 24, ch = 26, cols = poses.length, rows = skins.length;

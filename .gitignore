@@ -4,3 +4,7 @@ editor/.browsers/
 editor/.npm-cache/
 .DS_Store
 *.log
+
+# sons: originais baixados (refaz com sons/scripts/montar.py) e logs do Codex
+sons/fontes/
+sons/.codex-*

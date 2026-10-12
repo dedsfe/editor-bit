@@ -1,0 +1,618 @@
+[
+  {
+    "id": "whoosh_transicao",
+    "arquivo": "biblioteca/efeitos/whoosh_transicao.wav",
+    "tags": [
+      "whoosh",
+      "transicao",
+      "ep03"
+    ],
+    "duracao": 0.137667,
+    "fonte": "https://soundbible.com/2068-Woosh.html",
+    "autor": "Mark DiAngelo",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Woosh",
+    "download": "https://soundbible.com/grab.php?id=2068&type=wav",
+    "sha256": "7318c0e7e7cdf4036d1333abfd1558b5821ceb245edd5cbab16eb92ec85da2a7"
+  },
+  {
+    "id": "passaros_manha",
+    "arquivo": "biblioteca/ambiente/passaros_manha.wav",
+    "tags": [
+      "passaros",
+      "amanhecer",
+      "ep03"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/1827-Birds-After-Rain.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "pássaros depois da chuva; uso dramático como amanhecer",
+    "original": "Birds After Rain",
+    "download": "https://soundbible.com/grab.php?id=1827&type=wav",
+    "sha256": "5787a6d190eb9da40cc2fdf0fd7457856be2066e5c441b04b737bf5af36b0d64"
+  },
+  {
+    "id": "vento_leve",
+    "arquivo": "biblioteca/clima/vento_leve.wav",
+    "tags": [
+      "vento",
+      "leve",
+      "ep03"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/1810-Wind.html",
+    "autor": "Mark DiAngelo",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "passa-altas 80 Hz, passa-baixas 1300 Hz; suavização para cama distante",
+    "original": "Wind",
+    "download": "https://soundbible.com/grab.php?id=1810&type=wav",
+    "sha256": "fe75e6b678796c76f212b1ac2462baff3c7f6b974edecc022920b80003040fb3"
+  },
+  {
+    "id": "vento_forte",
+    "arquivo": "biblioteca/clima/vento_forte.wav",
+    "tags": [
+      "vento",
+      "forte"
+    ],
+    "duracao": 7.241,
+    "fonte": "https://soundbible.com/1247-Wind.html",
+    "autor": "Stilgar",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": true,
+    "notas": "",
+    "original": "Wind",
+    "download": "https://soundbible.com/grab.php?id=1247&type=wav",
+    "sha256": "34b359f636d8490fdf089a59e87f0888701c2f42e342d7bca5877277438d8249"
+  },
+  {
+    "id": "ondas_calmas",
+    "arquivo": "biblioteca/agua/ondas_calmas.wav",
+    "tags": [
+      "ondas",
+      "mar",
+      "ep01"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/885-Sea-Waves.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "",
+    "original": "Sea Waves",
+    "download": "https://soundbible.com/grab.php?id=885&type=wav",
+    "sha256": "f8e747a09a30dc78aca04978772326df984b6c9652c99e4c61c7762d3fcc1504"
+  },
+  {
+    "id": "splash_lago",
+    "arquivo": "biblioteca/agua/splash_lago.wav",
+    "tags": [
+      "splash",
+      "agua",
+      "ep01"
+    ],
+    "duracao": 1.9475,
+    "fonte": "https://soundbible.com/2100-Splash-Rock-In-Lake.html",
+    "autor": "Ploor",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "Splash Rock In Lake",
+    "download": "https://soundbible.com/grab.php?id=2100&type=wav",
+    "sha256": "69ae2629717c000a1f0c947c2ed3759ddf7503fca698e0b8ed1e52c05dc04ea2"
+  },
+  {
+    "id": "respingo",
+    "arquivo": "biblioteca/agua/respingo.wav",
+    "tags": [
+      "splash",
+      "respingo",
+      "ep01"
+    ],
+    "duracao": 1.067542,
+    "fonte": "https://soundbible.com/1460-Water-Splash.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Water Splash",
+    "download": "https://soundbible.com/grab.php?id=1460&type=wav",
+    "sha256": "7c3d5c84bcafd387aaf7bafe8e2cdcc63e1cfc978f6c0b01ecd010ed7321eb6e"
+  },
+  {
+    "id": "bolhas_afundando",
+    "arquivo": "biblioteca/agua/bolhas_afundando.wav",
+    "tags": [
+      "bolhas",
+      "submersao",
+      "ep01"
+    ],
+    "duracao": 3.946,
+    "fonte": "https://soundbible.com/1137-Bubbles.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "bolhas como substituto de afundamento; não gravação de pessoa afundando",
+    "original": "Bubbles",
+    "download": "https://soundbible.com/grab.php?id=1137&type=wav",
+    "sha256": "61546c69ffe0b56f1deb53ec48bef0990cd41831c3a601a94623d1af2faf3b55"
+  },
+  {
+    "id": "chuva",
+    "arquivo": "biblioteca/clima/chuva.wav",
+    "tags": [
+      "chuva",
+      "ep01"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/1999-Rain.html",
+    "autor": "Pwlae",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "",
+    "original": "Rain",
+    "download": "https://soundbible.com/grab.php?id=1999&type=wav",
+    "sha256": "e1f3f20b9a31408748735bca2cd8a41ab85f97b0b4ea4f3ec660631d056398b3"
+  },
+  {
+    "id": "chuva_forte_vento",
+    "arquivo": "biblioteca/clima/chuva_forte_vento.wav",
+    "tags": [
+      "chuva",
+      "vento",
+      "tempestade",
+      "ep01"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/2217-Heavy-Rain-Wind.html",
+    "autor": "Daniel Simion",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "",
+    "original": "Heavy Rain Wind",
+    "download": "https://soundbible.com/grab.php?id=2217&type=wav",
+    "sha256": "57653714b59f7adde84c1c953bcff789f48c9c5d978ff7d70ccbd4e9405e0a98"
+  },
+  {
+    "id": "trovao_perto",
+    "arquivo": "biblioteca/clima/trovao_perto.wav",
+    "tags": [
+      "trovao",
+      "tempestade",
+      "ep01"
+    ],
+    "duracao": 10.0,
+    "fonte": "https://soundbible.com/2015-Thunder-Strike-1.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Thunder Strike 1",
+    "download": "https://soundbible.com/grab.php?id=2015&type=wav",
+    "sha256": "d9421024a194180c56eacb7cb6ca21b845aaa2bbb1ec38a075bfd7d049f5f39e"
+  },
+  {
+    "id": "trovao_longe",
+    "arquivo": "biblioteca/clima/trovao_longe.wav",
+    "tags": [
+      "trovao",
+      "distante",
+      "ep01"
+    ],
+    "duracao": 11.946896,
+    "fonte": "https://soundbible.com/907-Distant-Thunder.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Distant Thunder",
+    "download": "https://soundbible.com/grab.php?id=907&type=wav",
+    "sha256": "e0b625dd728c4ac69a180f08a17b383a7acdb988dcf85eb0473ab0d4694a39b3"
+  },
+  {
+    "id": "grilos_noite",
+    "arquivo": "biblioteca/ambiente/grilos_noite.wav",
+    "tags": [
+      "grilos",
+      "noite",
+      "ep02"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/2083-Crickets-Chirping-At-Night.html",
+    "autor": "Lisa Redfern",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": true,
+    "notas": "",
+    "original": "Crickets Chirping At Night",
+    "download": "https://soundbible.com/grab.php?id=2083&type=wav",
+    "sha256": "cb4257760094766079165caf25f56b66af4e0a0795b528dff4381da97425aff8"
+  },
+  {
+    "id": "fogueira",
+    "arquivo": "biblioteca/ambiente/fogueira.wav",
+    "tags": [
+      "fogo",
+      "fogueira",
+      "ep02"
+    ],
+    "duracao": 15.407208,
+    "fonte": "https://soundbible.com/1902-Fire-Burning.html",
+    "autor": "JaBa",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "",
+    "original": "Fire Burning",
+    "download": "https://soundbible.com/grab.php?id=1902&type=wav",
+    "sha256": "ae125439d605c0a42be585ebf2af9c3f8264438b7111c23941ce440cec02dfb9"
+  },
+  {
+    "id": "galho_quebrando",
+    "arquivo": "biblioteca/objetos/galho_quebrando.wav",
+    "tags": [
+      "galho",
+      "estalo",
+      "ep02"
+    ],
+    "duracao": 0.260437,
+    "fonte": "https://soundbible.com/48-Branch-Break.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Branch Break",
+    "download": "https://soundbible.com/grab.php?id=48&type=wav",
+    "sha256": "927e4417722aeb8c679c849b687ff8e81e8dfb3c7a445aab006e3f6265e54ad1"
+  },
+  {
+    "id": "madeira_tensao",
+    "arquivo": "biblioteca/objetos/madeira_tensao.wav",
+    "tags": [
+      "madeira",
+      "rangido",
+      "galho",
+      "ep02"
+    ],
+    "duracao": 0.484208,
+    "fonte": "https://soundbible.com/518-Branch-Wood-Stress-Cracking.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "madeira sob tensão; camada possível para barco, sem afirmar gravação de barco",
+    "original": "Branch Wood Stress Cracking",
+    "download": "https://soundbible.com/grab.php?id=518&type=wav",
+    "sha256": "e5c36e1450a603c414d11d38012b663bd4170845f19781f50e35e575ba8bb419"
+  },
+  {
+    "id": "porta_madeira",
+    "arquivo": "biblioteca/objetos/porta_madeira.wav",
+    "tags": [
+      "porta",
+      "madeira",
+      "ep02"
+    ],
+    "duracao": 2.272417,
+    "fonte": "https://soundbible.com/1362-Old-Door-Creaking.html",
+    "autor": "Stephan",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "Old Door Creaking",
+    "download": "https://soundbible.com/grab.php?id=1362&type=wav",
+    "sha256": "778319c1859bc4ff2c41d45fe027de18ee1075cf9e9a85d2baacc81e9e41f843"
+  },
+  {
+    "id": "moeda_caindo",
+    "arquivo": "biblioteca/objetos/moeda_caindo.wav",
+    "tags": [
+      "moedas",
+      "metal",
+      "ep02"
+    ],
+    "duracao": 3.0,
+    "fonte": "https://soundbible.com/2081-Coin-Drop.html",
+    "autor": "Willem Hunt",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "Coin Drop",
+    "download": "https://soundbible.com/grab.php?id=2081&type=wav",
+    "sha256": "581de1982c90ebc0f71f978ad48438d3e56d0e3792d75e5cf255cdee972e6e26"
+  },
+  {
+    "id": "ovelha",
+    "arquivo": "biblioteca/objetos/ovelha.wav",
+    "tags": [
+      "ovelha",
+      "animal"
+    ],
+    "duracao": 0.961875,
+    "fonte": "https://soundbible.com/520-Sheep-Bleating.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Sheep Bleating",
+    "download": "https://soundbible.com/grab.php?id=520&type=wav",
+    "sha256": "40ed19660d66d41e9b3b0c2f7ff71b1f651dd2e04e3ddf5534b50d0cd2ccfabe"
+  },
+  {
+    "id": "leao_rugido",
+    "arquivo": "biblioteca/objetos/leao_rugido.wav",
+    "tags": [
+      "leao",
+      "animal"
+    ],
+    "duracao": 2.234396,
+    "fonte": "https://soundbible.com/1282-Lion-Roar.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Lion Roar",
+    "download": "https://soundbible.com/grab.php?id=1282&type=wav",
+    "sha256": "b35d5a51ef152b7eda351cd6ad17971554b71b9a708b612c0a1005e6cb3b1f4f"
+  },
+  {
+    "id": "leao_rosnado",
+    "arquivo": "biblioteca/objetos/leao_rosnado.wav",
+    "tags": [
+      "leao",
+      "animal"
+    ],
+    "duracao": 3.250458,
+    "fonte": "https://soundbible.com/1483-Lion-Growling.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "",
+    "original": "Lion Growling",
+    "download": "https://soundbible.com/grab.php?id=1483&type=wav",
+    "sha256": "62576618757cfdd4b42b8d2cfa2732b038b26af4745a26e8791b89c08e410a38"
+  },
+  {
+    "id": "risada_abafada",
+    "arquivo": "biblioteca/efeitos/risada_abafada.wav",
+    "tags": [
+      "risada",
+      "humor"
+    ],
+    "duracao": 3.548333,
+    "fonte": "https://soundbible.com/2010-Laughter.html",
+    "autor": "Mike Koenig",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": false,
+    "notas": "passa-baixas 1600 Hz; risada individual, não plateia inteira",
+    "original": "Laughter",
+    "download": "https://soundbible.com/grab.php?id=2010&type=wav",
+    "sha256": "80bf5af66f74732cd4b4ef8e085e86193ce7691d7c1f2a0ea34ff7afb6b7fc46"
+  },
+  {
+    "id": "passos_trilha",
+    "arquivo": "biblioteca/passos/passos_trilha.wav",
+    "tags": [
+      "passos",
+      "terra",
+      "trilha",
+      "ep02"
+    ],
+    "duracao": 8.0,
+    "fonte": "https://soundbible.com/1546-Hiking-A-Trail.html",
+    "autor": "aldo",
+    "licenca": "Public Domain",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "trilha gravada; não afirmar areia ou sandália",
+    "original": "Hiking A Trail",
+    "download": "https://soundbible.com/grab.php?id=1546&type=wav",
+    "sha256": "366870365bb6608b71abc9a3202f0449088f1f1c739b20e1b675420b6f362830"
+  },
+  {
+    "id": "passo_madeira",
+    "arquivo": "biblioteca/passos/passo_madeira.wav",
+    "tags": [
+      "passos",
+      "madeira"
+    ],
+    "duracao": 0.109958,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "footstep_wood_000.ogg",
+    "download": null,
+    "sha256": "d65f83aa420a3b980cfb5bb55e09d3e71271d2069794326860d50630e0ca1aff"
+  },
+  {
+    "id": "impacto_curto",
+    "arquivo": "biblioteca/efeitos/impacto_curto.wav",
+    "tags": [
+      "impacto",
+      "camera",
+      "ep03"
+    ],
+    "duracao": 0.421104,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "impactSoft_heavy_000.ogg",
+    "download": null,
+    "sha256": "45338a44625a2c0cbc780dc48d02f2b584f06db16339b32ebaa9586c4f384d02"
+  },
+  {
+    "id": "batida_madeira",
+    "arquivo": "biblioteca/objetos/batida_madeira.wav",
+    "tags": [
+      "madeira",
+      "batida"
+    ],
+    "duracao": 0.121458,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "",
+    "original": "impactWood_light_000.ogg",
+    "download": null,
+    "sha256": "26948588035de826f047beaa6e790896eca65bc3e4c1539379bb87185a62ae12"
+  },
+  {
+    "id": "ceramica_contato",
+    "arquivo": "biblioteca/objetos/ceramica_contato.wav",
+    "tags": [
+      "ceramica",
+      "jarro"
+    ],
+    "duracao": 0.284917,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "contato de prato como substituto de jarro, não quebra de barro",
+    "original": "impactPlate_light_000.ogg",
+    "download": null,
+    "sha256": "589813630f3edf250edded69e13e857b9280b0625a60cee67d343d84ad05a991"
+  },
+  {
+    "id": "brilho_suave",
+    "arquivo": "biblioteca/efeitos/brilho_suave.wav",
+    "tags": [
+      "brilho",
+      "milagre",
+      "ep01"
+    ],
+    "duracao": 1.083187,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "ressonância filtrada a 1800 Hz; usar muito baixo para não sugerir magia",
+    "original": "impactBell_heavy_000.ogg",
+    "download": null,
+    "sha256": "f9e8bd1e7d5ca2d520da8919771f860f2d87b7d650b51a1dfab0467cc59f346e"
+  },
+  {
+    "id": "passos_pedra",
+    "arquivo": "biblioteca/passos/passos_pedra.wav",
+    "tags": [
+      "passos",
+      "pedra",
+      "concreto",
+      "ep03"
+    ],
+    "duracao": 5.102812,
+    "fonte": "https://kenney.nl/assets/impact-sounds",
+    "autor": "Kenney",
+    "licenca": "CC0 1.0",
+    "exige_atribuicao": false,
+    "loop": false,
+    "notas": "sequência de 5 tomadas de concreto, substituto acústico de calçamento de pedra",
+    "original": "footstep_concrete_000..004.ogg",
+    "download": null,
+    "sha256": "7d344147372f30f68bde58676bed4f13c17f51a1b2bddf82af70171389a90d69"
+  },
+  {
+    "id": "multidao_murmurio",
+    "arquivo": "biblioteca/ambiente/multidao_murmurio.wav",
+    "tags": [
+      "multidao",
+      "murmurio",
+      "ep03"
+    ],
+    "duracao": 19.25,
+    "fonte": "https://soundbible.com/2163-Crowd-Talking.html",
+    "autor": "Daniel Simion",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "5 camadas deslocadas, duas reversas, lowpass 900 Hz; inteligibilidade reduzida, conferir na mix",
+    "original": "Party Crowd",
+    "download": null,
+    "sha256": "1ec703cbe7ee37f4609370f148909d2726bfdb3481b72a4628b19d4d82b32fb1"
+  },
+  {
+    "id": "ep03_monte_amanhecer",
+    "arquivo": "biblioteca/ambiente/ep03_monte_amanhecer.wav",
+    "tags": [
+      "ep03",
+      "monte",
+      "amanhecer",
+      "vento",
+      "passaros"
+    ],
+    "duracao": 17.25,
+    "fonte": "https://soundbible.com/1827-Birds-After-Rain.html",
+    "autor": "Mike Koenig; Mark DiAngelo",
+    "licenca": "CC BY 3.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "composição, pássaros + vento suave; não gravação histórica de Israel",
+    "original": "Birds After Rain + Wind",
+    "download": null,
+    "fontes": [
+      "https://soundbible.com/1827-Birds-After-Rain.html",
+      "https://soundbible.com/1810-Wind.html"
+    ],
+    "sha256": "213bc8c32c0662178c82591fb771330e2b6e83c99efdd70f5924dcf35adec73b"
+  },
+  {
+    "id": "ep03_esquina_mercado",
+    "arquivo": "biblioteca/ambiente/ep03_esquina_mercado.wav",
+    "tags": [
+      "ep03",
+      "esquina",
+      "mercado",
+      "dia",
+      "multidao",
+      "pedra"
+    ],
+    "duracao": 17.25,
+    "fonte": "https://soundbible.com/2163-Crowd-Talking.html",
+    "autor": "Daniel Simion; Kenney",
+    "licenca": "CC BY 3.0 + CC0 1.0",
+    "exige_atribuicao": true,
+    "loop": true,
+    "notas": "composição de multidão e concreto; mercado antigo recriado, sem gravação de comércio real",
+    "original": "Party Crowd + Kenney footstep_concrete",
+    "download": null,
+    "fontes": [
+      "https://soundbible.com/2163-Crowd-Talking.html",
+      "https://kenney.nl/assets/impact-sounds"
+    ],
+    "sha256": "0942bfabc34aaf2f9c6903f6f6de1c9d5bd8c4682e2e4d26d539de4aa92bcb70"
+  }
+]

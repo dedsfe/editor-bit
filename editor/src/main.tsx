@@ -10,7 +10,7 @@ import { Player } from "../../engine/src/player";
 import * as api from "./api";
 import { useHistory } from "./history";
 import { Mixer } from "./audio";
-import { CUE_META, anchorAt, makeCue, shiftRef, round, type AddItem } from "./cues";
+import { CUE_META, SOUNDS, setSounds, anchorAt, makeCue, shiftRef, round, type AddItem } from "./cues";
 import { Preview } from "./Preview";
 import { Timeline, type Selection } from "./Timeline";
 import { Inspector } from "./Inspector";
@@ -35,6 +35,10 @@ function App() {
   const [exporting, setExporting] = useState("");
   const mixer = useRef(new Mixer());
   const diskMtime = useRef(0);
+
+  // ---- biblioteca de sons (sons/manifest.json)
+  const [, setSoundsLoaded] = useState(0);
+  useEffect(() => { api.listSounds().then((l) => { setSounds(l); setSoundsLoaded(l.length); }).catch(() => {}); }, []);
 
   // ---- abrir projeto
   useEffect(() => {
@@ -107,9 +111,10 @@ function App() {
   const play = useCallback(async () => {
     if (!scene || !build) return;
     if (playing) return stop();
-    await mixer.current.prepare(scene.audio, [...new Set(build.lines.map((l) => l.source))]);
+    const used = [...new Set((scene.cues ?? []).flatMap((c) => (c.type === "sound" && SOUNDS.some((s) => s.id === c.sound) ? [c.sound] : [])))];
+    await mixer.current.prepare(scene.audio, [...new Set(build.lines.map((l) => l.source))], used);
     const t0 = time >= build.duration - 0.05 ? 0 : time;
-    mixer.current.play(scene.audio, build, t0);
+    mixer.current.play(scene, build, t0, SOUNDS);
     setPlaying(true);
   }, [scene, build, playing, time]);
   useEffect(() => {

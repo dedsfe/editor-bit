@@ -1,5 +1,6 @@
 // Conversa com o servidor local do editor (vite.config.ts).
 import type { Analysis, Scene, Word } from "../../engine/src/scene/types.ts";
+import type { SoundInfo } from "../../engine/src/scene/sound.ts";
 
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   const r = await fetch(path, init);
@@ -18,6 +19,8 @@ export const listSources = (dir: string) => call<string[]>(`/api/audio?dir=${enc
 export const audioUrl = (dir: string, source: string) => `/api/audio?dir=${encodeURIComponent(dir)}&source=${encodeURIComponent(source)}`;
 export const analyzeSources = (dir: string, sources: string[]) => call<Record<string, Analysis>>("/api/analysis", post({ dir, sources }));
 export const transcribe = (dir: string, source: string) => call<{ text: string; words: Word[] }>("/api/transcribe", post({ dir, source }));
+export const listSounds = () => call<SoundInfo[]>("/api/sounds");
+export const soundUrl = (id: string) => `/api/sound?id=${encodeURIComponent(id)}`;
 export const exportStart = (scene: Scene) => call<{ job: string; total: number }>("/api/export/start", post(scene));
 export const exportFrames = (job: string, data: Uint8Array<ArrayBuffer>) =>
   call<{ frames: number }>(`/api/export/${job}/frames`, { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: data as BodyInit });

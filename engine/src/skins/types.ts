@@ -34,12 +34,18 @@ export interface Skin {
   /** pixels da boca (coordenadas do quadro, seguem a cabeça) */
   mouth: { half: Pt[]; open: Pt[]; color: string };
   /** pixels dos olhos e a cor que vira quando pisca (pálpebra) */
-  eyes: { pixels: Pt[]; lid: string };
+  /** `closed` = cor do olho fechado (orando); sem isso usa a pálpebra */
+  eyes: { pixels: Pt[]; lid: string; closed?: string };
   /**
    * Gestos: cada variante troca camadas pelo nome (ou adiciona novas).
    * Ex.: "reach" troca o "corpo" por um corpo com o braço esticado.
    */
   variants?: Record<string, Part[]>;
+  /**
+   * Ajuste da pose de um gesto: `dy` desce a cabeça, os olhos e a boca (ajoelhar),
+   * `eyesClosed` fecha os olhos (orar). Uma camada "pés" na variante substitui os pés.
+   */
+  poses?: Record<string, { dy?: number; eyesClosed?: boolean }>;
   /** ajuste do normal map automático */
   normals?: NormalOpts;
   /** cor da legenda/balão desse personagem */
